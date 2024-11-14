@@ -14,7 +14,7 @@ export const ContentWrapper = styled.div`
 `;
 
 export const Title = styled.h4`
-  font-size: 24px;
+  font-size: 16px;
 `;
 
 export const Text = styled.p`
@@ -80,8 +80,11 @@ export const ErrorMessage = styled.p`
   font-size: 10px;
 `;
 
-export const WordContainer = styled.div`
+export const WrapperTitleValue = styled.div`
   margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const GameOverText = styled.h2`
@@ -153,6 +156,14 @@ export const PlayerName = styled.div`
   cursor: pointer;
   padding: 5px;
   &:hover {
-    background-color: #f1f1f1;
+    transform: scale(1.05)
+  }
+`;
+export const CurrentWord = styled.h1`
+  cursor: pointer;
+  padding: 5px;
+  color: #28a745;
+  &:hover {
+    transform: scale(1.05)
   }
 `;

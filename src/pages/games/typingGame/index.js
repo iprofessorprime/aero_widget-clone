@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Keyboard from './components/keyBoard';
 import { toast } from 'react-toastify';
-import { Button, ContentWrapper, ErrorMessage, GameContainer, Input, PlayerTable, Select, Text, Title } from './styles';
+import { Button, ContentWrapper, CurrentWord, ErrorMessage, GameContainer, GameOverText, Input, PlayerName, PlayerTable, Select, Text, Title, WrapperTitleValue } from './styles';
 import PlayersTable from './components/playersTable';
 
 const TypingGame = () => {
@@ -24,7 +24,7 @@ const TypingGame = () => {
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
   };
-  
+
 
   const handleNameChange = (e) => {
     setPlayerName(e.target.value);
@@ -45,7 +45,7 @@ const TypingGame = () => {
     }
     startGame();
   };
-  
+
 
   const startGame = () => {
     setIsGameActive(true);
@@ -96,7 +96,7 @@ const TypingGame = () => {
     const players = JSON.parse(localStorage.getItem('typingGame')) || [];
     const existingPlayerIndex = players.findIndex(player => player.name.toLowerCase() === name.toLowerCase());
     if (existingPlayerIndex !== -1) {
-      if(players[existingPlayerIndex].score < score){
+      if (players[existingPlayerIndex].score < score) {
         players[existingPlayerIndex].score = score;
       }
     } else {
@@ -118,16 +118,7 @@ const TypingGame = () => {
   useEffect(() => {
     loadPlayerList();
   }, [selectedCategory]);
-  const getPlayersByCategory = (category) => {
-    return playerList
-      .filter((player) => player.category === category)
-      .map((player, index) => (
-        <tr key={index} onClick={() => handleNameSelect(player)}>
-          <td>{player.name}</td>
-          <td>{player.score}</td>
-        </tr>
-      ));
-  };
+
   return (
     <GameContainer>
       <ContentWrapper>
@@ -136,14 +127,14 @@ const TypingGame = () => {
             <div>
               <Title>Please Select or Enter your name to start:</Title>
               <Input
-              error={!!errorMessage}
-              margin={`0px 0px 10px 0px`}
+                error={!!errorMessage}
+                margin={`0px 0px 10px 0px`}
                 type="text"
                 value={playerName}
                 onChange={handleNameChange}
                 placeholder="Enter your name"
               />
-              {errorMessage&& <ErrorMessage>{errorMessage}</ErrorMessage>}
+              {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
             </div>
 
             {playerName && (
@@ -167,15 +158,18 @@ const TypingGame = () => {
           </>
         ) : (
           <>
-            <Title>Typing Game</Title>
-            <Text>Player: {playerName}</Text>
+            <WrapperTitleValue>
+              Player: <PlayerName>{playerName}</PlayerName>
+            </WrapperTitleValue>
             <Text>Time Left: {timeLeft} seconds</Text>
             <Text>Score: {score}</Text>
 
             {isGameActive ? (
               <>
-                <Title>Type the word:</Title>
-                <h3>{currentWord}</h3>
+                <WrapperTitleValue>
+                  <Title>Type the word:</Title>
+                  <CurrentWord>{currentWord}</CurrentWord>
+                </WrapperTitleValue>
                 <Input
                   type="text"
                   value={typedText}
@@ -188,17 +182,17 @@ const TypingGame = () => {
               <Button onClick={startGame} disabled={!playerName || !selectedCategory || errorMessage}>Start Game</Button>
             )}
 
-            {!isGameActive && timeLeft === 0 && <h2>Game Over! Final Score: {score}</h2>}
+            {!isGameActive && timeLeft === 0 && <GameOverText>Game Over! Final Score: {score}</GameOverText>}
           </>
         )}
       </ContentWrapper>
 
       {!isGameActive && (
-      <PlayersTable
-        playerList={playerList}
-        handleNameSelect={handleNameSelect} 
-      />
-    )}
+        <PlayersTable
+          playerList={playerList}
+          handleNameSelect={handleNameSelect}
+        />
+      )}
 
       {isGameActive && (
         <Keyboard
