@@ -1,13 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import Keyboard from './components/keyBoard';
+import { toast } from 'react-toastify';
+import { Button, ContentWrapper, ErrorMessage, GameContainer, Input, PlayerTable, Select, Text, Title } from './styles';
 
 const TypingGame = () => {
-  const words = ['react', 'javascript', 'programming', 'typing', 'game'];
+  const categories = {
+    vehicles: ['car', 'bike', 'truck', 'bus', 'plane'],
+    birds: ['eagle', 'sparrow', 'parrot', 'penguin', 'owl'],
+    fruits: ['apple', 'banana', 'cherry', 'mango', 'grape'],
+  };
+
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [currentWord, setCurrentWord] = useState('');
   const [typedText, setTypedText] = useState('');
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(30); // 30 seconds to type
+  const [timeLeft, setTimeLeft] = useState(30);
   const [isGameActive, setIsGameActive] = useState(false);
+  const [playerName, setPlayerName] = useState('');
+  const [playerList, setPlayerList] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+  };
+  
+
+  const handleNameChange = (e) => {
+    setPlayerName(e.target.value);
+    setErrorMessage('');
+  };
+
+  const handleNameSelect = (player) => {
+    setPlayerName(player.name);
+    setSelectedCategory(player.category);
+    setIsGameActive(true);
+    startGame();
+  };
+
+  const handleStartGame = () => {
+    if (playerName.trim() === '') {
+      toast.error("Please enter your name before starting the game!");
+      return;
+    }
+    startGame();
+  };
+  
 
   const startGame = () => {
     setIsGameActive(true);
@@ -18,8 +55,14 @@ const TypingGame = () => {
   };
 
   const setRandomWord = () => {
-    const randomWord = words[Math.floor(Math.random() * words.length)];
-    setCurrentWord(randomWord);
+    const wordList = categories[selectedCategory];
+
+    if (wordList && wordList.length > 0) {
+      const randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+      setCurrentWord(randomWord);
+    } else {
+      console.error('No words available for the selected category.');
+    }
   };
 
   const handleTyping = (e) => {
@@ -33,7 +76,6 @@ const TypingGame = () => {
     }
   };
 
-  // Timer countdown effect
   useEffect(() => {
     if (timeLeft > 0 && isGameActive) {
       const timer = setInterval(() => {
@@ -43,44 +85,179 @@ const TypingGame = () => {
       return () => clearInterval(timer);
     } else if (timeLeft === 0) {
       setIsGameActive(false);
+      if (playerName) {
+        savePlayerScore(playerName, score, selectedCategory);
+      }
     }
-  }, [timeLeft, isGameActive]);
+  }, [timeLeft, isGameActive, score, selectedCategory]);
 
+  const savePlayerScore = (name, score, category) => {
+    const players = JSON.parse(localStorage.getItem('typingGame')) || [];
+    const existingPlayerIndex = players.findIndex(player => player.name.toLowerCase() === name.toLowerCase());
+    if (existingPlayerIndex !== -1) {
+      if(players[existingPlayerIndex].score < score){
+        players[existingPlayerIndex].score = score;
+      }
+    } else {
+      players.push({ name, score, category });
+    }
+
+    localStorage.setItem('typingGame', JSON.stringify(players));
+    loadPlayerList();
+    setPlayerName('');
+    setErrorMessage('');
+    setSelectedCategory('');
+  };
+
+  const loadPlayerList = () => {
+    const players = JSON.parse(localStorage.getItem('typingGame')) || [];
+    setPlayerList(players);
+  };
+
+  useEffect(() => {
+    loadPlayerList();
+  }, [selectedCategory]);
+  const getPlayersByCategory = (category) => {
+    return playerList
+      .filter((player) => player.category === category)
+      .map((player, index) => (
+        <tr key={index} onClick={() => handleNameSelect(player)}>
+          <td>{player.name}</td>
+          <td>{player.score}</td>
+        </tr>
+      ));
+  };
   return (
-    <div>
-      <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <h1>Typing Game</h1>
-        <p>Time Left: {timeLeft} seconds</p>
-        <p>Score: {score}</p>
-
-        {isGameActive ? (
+    <GameContainer>
+      <ContentWrapper>
+        {!isGameActive ? (
           <>
-            <h2>Type the word:</h2>
-            <h3>{currentWord}</h3>
-            <input
-              type="text"
-              value={typedText}
-              onChange={handleTyping}
-              placeholder="Start typing..."
-              autoFocus
-            />
+            <div>
+              <Title>Please Select or Enter your name to start:</Title>
+              <Input
+              error={!!errorMessage}
+              margin={`0px 0px 10px 0px`}
+                type="text"
+                value={playerName}
+                onChange={handleNameChange}
+                placeholder="Enter your name"
+              />
+              {errorMessage&& <ErrorMessage>{errorMessage}</ErrorMessage>}
+            </div>
+
+            {playerName && (
+              <>
+                <Select
+                  value={selectedCategory}
+                  onChange={(e) => handleCategorySelect(e.target.value)}
+                >
+                  <option value="" disabled>Select a category</option>
+                  <option value="vehicles">Vehicles</option>
+                  <option value="birds">Birds</option>
+                  <option value="fruits">Fruits</option>
+                </Select>
+              </>
+            )}
+            <div>
+              <Button onClick={handleStartGame} disabled={!playerName || !selectedCategory}>
+                Start Games
+              </Button>
+            </div>
           </>
         ) : (
-          <button onClick={startGame}>Start Game</button>
-        )}
+          <>
+            <Title>Typing Game</Title>
+            <Text>Player: {playerName}</Text>
+            <Text>Time Left: {timeLeft} seconds</Text>
+            <Text>Score: {score}</Text>
 
-        {!isGameActive && timeLeft === 0 && <h2>Game Over! Final Score: {score}</h2>}
-      </div>
-      <Keyboard
-        keyGroups={[
-          // 'functionRow',
-          // 'numberRow',
-          'topLetterRow',
-          'homeRow',
-          'bottomLetterRow',
-          'modifierRow'
-        ]} />
-    </div>
+            {isGameActive ? (
+              <>
+                <Title>Type the word:</Title>
+                <h3>{currentWord}</h3>
+                <Input
+                  type="text"
+                  value={typedText}
+                  onChange={handleTyping}
+                  placeholder="Start typing..."
+                  autoFocus
+                />
+              </>
+            ) : (
+              <Button onClick={startGame} disabled={!playerName || !selectedCategory || errorMessage}>Start Game</Button>
+            )}
+
+            {!isGameActive && timeLeft === 0 && <h2>Game Over! Final Score: {score}</h2>}
+          </>
+        )}
+      </ContentWrapper>
+
+      {!isGameActive && (
+        <PlayerTable>
+        <thead>
+          <tr>
+            <th>Vehicles</th>
+            <th>Birds</th>
+            <th>Fruits</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {getPlayersByCategory('vehicles')}
+                </tbody>
+              </table>
+            </td>
+            <td>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {getPlayersByCategory('birds')}
+                </tbody>
+              </table>
+            </td>
+            <td>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {getPlayersByCategory('fruits')}
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </PlayerTable>
+      )}
+
+      {isGameActive && (
+        <Keyboard
+          keyGroups={[
+            'topLetterRow',
+            'homeRow',
+            'bottomLetterRow',
+            'modifierRow',
+          ]}
+        />
+      )}
+    </GameContainer>
   );
 };
 
