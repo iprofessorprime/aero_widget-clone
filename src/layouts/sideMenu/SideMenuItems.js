@@ -20,6 +20,13 @@ const management = [
         url: "/loaders",
         icon: '',
       },
+      {
+        id: "games",
+        title: "Games",
+        type: "item",
+        url: "/games",
+        icon: '',
+      },
       // {
       //   id: "colors",
       //   title: "Colors",

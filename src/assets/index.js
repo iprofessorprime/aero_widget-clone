@@ -4,6 +4,8 @@ import forceMageCover from './images/force_mage-cover.jpg';
 import darkRiderCharacter from './images/dark_rider-character.webp';
 import darkRiderTitle from './images/dark_rider-title.png';
 import darkRiderCover from './images/dark_rider-cover.jpg';
+import typingGameCover from './images/typingGame.jpeg';
+import carRacingCover from './images/carRacing.jpeg';
 
 export {
   forceMageCharacter,
@@ -11,5 +13,7 @@ export {
   forceMageCover,
   darkRiderCharacter,
   darkRiderTitle,
-  darkRiderCover
+  darkRiderCover,
+  typingGameCover,
+  carRacingCover
 };
