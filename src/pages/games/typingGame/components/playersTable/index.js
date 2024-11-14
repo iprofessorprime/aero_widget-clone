@@ -1,17 +1,23 @@
-import React from 'react'
+import React from 'react';
 import { PlayerTable } from '../../styles';
 
 const PlayersTable = ({ playerList, handleNameSelect }) => {
   const getPlayersByCategory = (category) => {
-    return playerList
+    const sortedPlayers = playerList
       .filter((player) => player.category === category)
-      .map((player, index) => (
-        <tr key={index} onClick={() => handleNameSelect(player)}>
-          <td>{player.name}</td>
-          <td>{player.score}</td>
-        </tr>
-      ));
+      .sort((a, b) => b.score - a.score);
+
+    return sortedPlayers.map((player, index) => (
+      <tr key={index} onClick={() => handleNameSelect(player)}>
+        <td>
+          {player.name}
+          {index < 3 && '⭐'} 
+        </td>
+        <td>{player.score}</td>
+      </tr>
+    ));
   };
+
   return (
     <PlayerTable>
       <thead>
@@ -23,7 +29,7 @@ const PlayersTable = ({ playerList, handleNameSelect }) => {
       </thead>
       <tbody>
         <tr>
-          <td className="vehicles">
+          <td>
             <table>
               <thead>
                 <tr>
@@ -36,7 +42,7 @@ const PlayersTable = ({ playerList, handleNameSelect }) => {
               </tbody>
             </table>
           </td>
-          <td className="birds">
+          <td >
             <table>
               <thead>
                 <tr>
@@ -49,7 +55,7 @@ const PlayersTable = ({ playerList, handleNameSelect }) => {
               </tbody>
             </table>
           </td>
-          <td className="fruits">
+          <td >
             <table>
               <thead>
                 <tr>
@@ -65,7 +71,7 @@ const PlayersTable = ({ playerList, handleNameSelect }) => {
         </tr>
       </tbody>
     </PlayerTable>
-  )
-}
+  );
+};
 
-export default PlayersTable
+export default PlayersTable;

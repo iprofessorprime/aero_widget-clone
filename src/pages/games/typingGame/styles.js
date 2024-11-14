@@ -94,11 +94,23 @@ export const PlayerTable = styled.table`
   text-align: center;
   border-collapse: collapse;
   
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
+  td table tbody {
+    display: block; 
+    width: 100%;
+    max-height: 200px;      
+    overflow: hidden;        
+    overflow-y: auto;       
+  }
+  td table thead, td table tbody tr {
+    display: table;         
+    width: 100%;
+    table-layout: fixed;     
+  }
   th, td {
     padding: 10px;
     border: 1px solid #ddd;
@@ -108,6 +120,24 @@ export const PlayerTable = styled.table`
     width: 33%;
     vertical-align: top;
     box-shadow: rgb(204, 219, 232, 0.25) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  }
+  td table tbody::-webkit-scrollbar {
+    width: 8px; 
+  }
+
+  td table tbody::-webkit-scrollbar-track {
+    background: #f1f1f1;  
+    border-radius: 10px;  
+  }
+
+  td table tbody::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 10px;     
+    border: 2px solid #f1f1f1; 
+  }
+
+  td table tbody::-webkit-scrollbar-thumb:hover {
+    background-color: #555;  
   }
 
   td td:hover {
