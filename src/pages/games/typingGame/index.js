@@ -203,7 +203,7 @@ const TypingGame = () => {
         </thead>
         <tbody>
           <tr>
-            <td>
+            <td className="vehicles">
               <table>
                 <thead>
                   <tr>
@@ -216,7 +216,7 @@ const TypingGame = () => {
                 </tbody>
               </table>
             </td>
-            <td>
+            <td className="birds">
               <table>
                 <thead>
                   <tr>
@@ -229,7 +229,7 @@ const TypingGame = () => {
                 </tbody>
               </table>
             </td>
-            <td>
+            <td className="fruits">
               <table>
                 <thead>
                   <tr>
@@ -250,6 +250,7 @@ const TypingGame = () => {
       {isGameActive && (
         <Keyboard
           keyGroups={[
+            "functionRow",
             'topLetterRow',
             'homeRow',
             'bottomLetterRow',
