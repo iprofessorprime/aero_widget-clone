@@ -7,6 +7,7 @@ import Calendars from '../pages/calenders';
 import Games from '../pages/games';
 import TypingGame from '../pages/games/typingGame';
 import GamesList from '../pages/games/gameList';
+import CarRacingGame from '../pages/games/carRacing';
 
 const DashboardRoutes = {
   path: '/',
@@ -47,6 +48,10 @@ const DashboardRoutes = {
         {
           path: 'typing-game',
           element: <TypingGame />
+        },
+        {
+          path: 'car-racing',
+          element: <CarRacingGame />
         },
       ]
     },

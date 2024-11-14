@@ -53,7 +53,7 @@ const GamesList = () => {
     },
     {
       name: "Racing game",
-      url: "",
+      url: "/games/car-racing",
       image: carRacingCover,
     },
   ];
