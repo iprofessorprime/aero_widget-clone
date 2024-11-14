@@ -4,6 +4,9 @@ import AllCards from '../pages/cards';
 import AllLoaders from '../pages/loaders';
 import ColorsPage from '../pages/colorsShades';
 import Calendars from '../pages/calenders';
+import Games from '../pages/games';
+import TypingGame from '../pages/games/typingGame';
+import GamesList from '../pages/games/gameList';
 
 const DashboardRoutes = {
   path: '/',
@@ -32,6 +35,20 @@ const DashboardRoutes = {
     {
       path: 'calendars',
       element: <Calendars />
+    },
+    {
+      path: 'games',
+      element: <Games />,
+      children: [
+        {
+          path: '',
+          element: <GamesList />
+        },
+        {
+          path: 'typing-game',
+          element: <TypingGame />
+        },
+      ]
     },
   ]
 };

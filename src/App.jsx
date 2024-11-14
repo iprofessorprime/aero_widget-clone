@@ -6,6 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import WelcomePage from "./pages/welcome";
 import { ThemeProvider } from "aero-fantom";
 import Themes from './themes'; // Adjust path as necessary
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const [showWelcome, setShowWelcome] = useState(false);
@@ -37,6 +39,7 @@ const App = () => {
 
   return (
     <ThemeProvider themeColors={currentTheme}>
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className='container'>
         {/* <Themes onThemeChange={updateTheme} />  */}
         <BrowserRouter>
