@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Keyboard from './components/keyBoard';
 import { toast } from 'react-toastify';
 import { Button, ContentWrapper, ErrorMessage, GameContainer, Input, PlayerTable, Select, Text, Title } from './styles';
+import PlayersTable from './components/playersTable';
 
 const TypingGame = () => {
   const categories = {
@@ -193,64 +194,15 @@ const TypingGame = () => {
       </ContentWrapper>
 
       {!isGameActive && (
-        <PlayerTable>
-        <thead>
-          <tr>
-            <th>Vehicles</th>
-            <th>Birds</th>
-            <th>Fruits</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="vehicles">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {getPlayersByCategory('vehicles')}
-                </tbody>
-              </table>
-            </td>
-            <td className="birds">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {getPlayersByCategory('birds')}
-                </tbody>
-              </table>
-            </td>
-            <td className="fruits">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {getPlayersByCategory('fruits')}
-                </tbody>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </PlayerTable>
-      )}
+      <PlayersTable
+        playerList={playerList}
+        handleNameSelect={handleNameSelect} 
+      />
+    )}
 
       {isGameActive && (
         <Keyboard
           keyGroups={[
-            "functionRow",
             'topLetterRow',
             'homeRow',
             'bottomLetterRow',
