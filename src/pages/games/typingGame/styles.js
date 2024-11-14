@@ -109,7 +109,7 @@ export const PlayerTable = styled.table`
   td table thead, td table tbody tr {
     display: table;         
     width: 100%;
-    table-layout: fixed;     
+    // table-layout: fixed;     
   }
   th, td {
     padding: 10px;
