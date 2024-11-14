@@ -1,0 +1,28 @@
+.custom-syntax-highlighter {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  background-color: #282a36; /* Dark background */
+  color: #f8f8f2; /* Light text */
+  padding: 1em;
+  border-radius: 0.3em;
+  overflow-x: auto;
+}
+
+.tag {
+  color: #ff79c6; /* Pink for HTML tags */
+}
+
+.property {
+  color: #50fa7b; /* Green for CSS properties */
+}
+
+.string {
+  color: #f1fa8c; /* Yellow for strings */
+}
+
+.keyword {
+  color: #bd93f9; /* Purple for keywords */
+}
+
+.color {
+  color: #8be9fd; /* Light blue for colors */
+}

@@ -1,0 +1,175 @@
+.CodeViewerCard {
+  width: 100%;
+}
+
+.CodeViewerCard .container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  background-color: #1f2937;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.CodeViewerCard .header {
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  color: white;
+  position: relative;
+}
+
+.CodeViewerCard .header-icons {
+  position: absolute;
+  left: 12px;
+  display: flex;
+}
+
+.CodeViewerCard .icon {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.CodeViewerCard .icon.red {
+  background-color: #ff605c;
+}
+
+.CodeViewerCard .icon.yellow {
+  background-color: #ffbd44;
+}
+
+.CodeViewerCard .icon.green {
+  background-color: #00ca4e;
+}
+
+.CodeViewerCard .header-title {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.CodeViewerCard .content {
+  padding: 10px;
+  color: #d4d4d4;
+}
+
+.CodeViewerCard .codeOptionWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CodeViewerCard .codeOption,.copyButton {
+  background-color: #242325;
+  color: #dadada;
+  font-size: 10px;
+  border-radius: 5px;
+  margin-right: 4px;
+  padding: 2px 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: none;
+  box-shadow: rgb(183 183 183 / 15%) 0px 3px 3px 0px;
+}
+
+.CodeViewerCard .codeOption:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.CodeViewerCard .codeOption.active {
+  background-color: #007bff;
+  color: white;
+}
+.CodeViewerCard .codeOption.disabled {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* .CodeViewerCard .copyButton {
+  background-color: #242325;
+  color: #dadada;
+  border: none;
+  padding: 0px 2px;
+  border-radius: 5px;
+  font-size: 10px;
+  border-radius: 5px;
+  padding: 2px 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+} */
+
+.CodeViewerCard .copyButton:disabled {
+  background-color: #cccccc; 
+  cursor: not-allowed;
+}
+
+.CodeViewerCard .copyMessage {
+  margin-left: 10px;
+  color: #4caf50;
+}
+
+.CodeViewerCard .loading-text {
+  margin-right: 8px;
+}
+
+.CodeViewerCard .dot {
+  animation: ping 1.5s ease-in-out infinite;
+}
+
+.CodeViewerCard .dot-1 {
+  animation-delay: 0.5s;
+}
+
+.CodeViewerCard .dot-2 {
+  animation-delay: 0.7s;
+}
+
+.CodeViewerCard .dot-3 {
+  animation-delay: 0.9s;
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.CodeViewerCard .heading {
+  color: #ffbd44;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.CodeViewerCard .code-block {
+  color: #d4d4d4;
+  border-radius: 4px;
+  white-space: pre-wrap; /* Preserve line breaks */
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.CodeViewerCard .container ::-webkit-scrollbar {
+  width: 12px; 
+  height: 8px; 
+}
+
+.CodeViewerCard .container ::-webkit-scrollbar-thumb {
+  background-color: rgb(36, 35, 35); 
+  border-radius: 10px; 
+}
+
+.CodeViewerCard .container ::-webkit-scrollbar-track {
+  background-color: lightgray; 
+  border-radius: 10px; 
+}

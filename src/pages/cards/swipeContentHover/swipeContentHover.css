@@ -1,0 +1,191 @@
+.SwipeContentOnHover img {
+  max-width: 100%;
+  height: auto;
+}
+
+.SwipeContentOnHover {
+  -webkit-text-size-adjust: 100%;
+  height: 100%;
+  font-variant-ligatures: none;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 100%;
+  font-family: "Fira Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  color: #1f1d42;
+  background-color: #f0f8e1;
+  padding: 20px;
+}
+
+.SwipeContentOnHover h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.SwipeContentOnHover .card-hover {
+  width: 80%;
+  max-width: 400px;
+  height: auto;
+  aspect-ratio: 4/3; /* Keeps the card proportional */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s ease-in-out;
+}
+
+.SwipeContentOnHover .card-hover:hover .card-hover__content {
+  background-color: #dee8c2;
+  transform: translateY(-100%);
+  padding: 5vw 10vw;
+  transition: all 0.35s ease-in-out;
+}
+
+.SwipeContentOnHover .card-hover:hover .card-hover__extra {
+  transform: translateY(0);
+  transition: transform 0.35s ease-in-out;
+}
+
+.SwipeContentOnHover .card-hover:hover img {
+  transform: scale(1);
+  transition: transform 0.35s ease-in-out;
+}
+
+.SwipeContentOnHover .card-hover__content {
+  width: 100%;
+  text-align: center;
+  background-color: #86b971;
+  padding: 5vw 10vw;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(0);
+  transition: all 0.35s ease-in-out;
+  will-change: transform;
+  z-index: 1;
+}
+
+.SwipeContentOnHover .card-hover__title {
+  font-size: 1.2rem;
+  margin-bottom: 1em;
+}
+
+.SwipeContentOnHover .card-hover__title span {
+  color: #2d7f0b;
+}
+
+.SwipeContentOnHover .card-hover__text {
+  font-size: 0.9rem;
+}
+
+.SwipeContentOnHover .card-hover__link {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #2d7f0b;
+  opacity: 0;
+  transition: all 0.35s ease-in-out;
+}
+
+.SwipeContentOnHover .card-hover__link:hover svg {
+  transform: translateX(4px);
+}
+
+.SwipeContentOnHover .card-hover__link svg {
+  width: 18px;
+  margin-left: 4px;
+  transition: transform 0.3s;
+}
+
+.SwipeContentOnHover .card-hover__extra {
+  height: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: #86b971;
+  padding: 5vw;
+  bottom: 0;
+  z-index: 0;
+  color: #dee8c2;
+  transform: translateY(100%);
+  will-change: transform;
+  transition: transform 0.35s ease-in-out;
+}
+
+.SwipeContentOnHover .card-hover__extra span {
+  color: #2d7f0b;
+}
+
+.SwipeContentOnHover .card-hover img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  transform: scale(1.2);
+  transition: transform 0.35s ease-in-out;
+}
+
+/* Media Queries for different screen sizes */
+@media screen and (max-width: 768px) {
+  .SwipeContentOnHover .card-hover {
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+  }
+
+  .SwipeContentOnHover .card-hover__title {
+    font-size: 1rem;
+  }
+
+  .SwipeContentOnHover .card-hover__text {
+    font-size: 0.75rem;
+  }
+
+  .SwipeContentOnHover .card-hover__extra {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .SwipeContentOnHover .card-hover {
+    width: 95%;
+    max-width: 320px;
+    height: auto;
+  }
+
+  .SwipeContentOnHover .card-hover__title {
+    font-size: 0.9rem;
+  }
+
+  .SwipeContentOnHover .card-hover__text {
+    font-size: 0.7rem;
+  }
+
+  .SwipeContentOnHover .card-hover__extra {
+    font-size: 0.9rem;
+  }
+}

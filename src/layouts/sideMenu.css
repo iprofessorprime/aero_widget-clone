@@ -1,0 +1,216 @@
+@import url("https://fonts.googleapis.com/css2?family=Belanosima&family=Rubik+Vinyl&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.sidebarWrapper  {
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  transition: 0.5s ease-in-out;
+}
+.sidebarWrapper ::-webkit-scrollbar{
+  width: 0px;
+}
+.sidebarWrapper .darksoul-sidenav {
+  margin: auto;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: rgba(255, 255, 255, 0.132);
+  border-radius: 20px;
+  border: 1px solid rgb(255, 255, 255);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.9s;
+  /* zoom: 0.9; */
+}
+.sidebarWrapper .darksoul-sidenav .header {
+  margin: auto;
+  width: 100%;
+  height: 75px;
+  border-radius: 20px;
+  display: flex;
+}
+.sidebarWrapper .darksoul-sidenav .header .profile {
+  margin: auto;
+  margin-left: 10px;
+  margin-right: -8px;
+  width: 90%;
+  height: 100%;
+  display: flex;
+}
+.sidebarWrapper .darksoul-sidenav .header .profile .profile-pic {
+  margin: auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+}
+.sidebarWrapper .darksoul-sidenav .header .profile .profile-pic img {
+  width: 30px;
+  height: 30px;
+  margin: auto;
+  border-radius: 50%;
+}
+.sidebarWrapper .darksoul-sidenav .header .profile .profile-name {
+  margin: auto;
+  margin-left: 0px;
+  width: 60%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.sidebarWrapper .darksoul-sidenav .header .profile .profile-name span {
+  margin: auto;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  font-size: 7px;
+}
+.sidebarWrapper .darksoul-sidenav .header .profile .profile-name p {
+  margin: auto;
+  margin-left: 0px;
+  margin-top: 0px;
+  font-size: small;
+  font-weight: 600;
+}
+.sidebarWrapper .darksoul-sidenav .header .btn {
+  margin: auto;
+  width: 10%;
+  height: 60%;
+  display: flex;
+}
+.sidebarWrapper .darksoul-sidenav .header .btn .circle {
+  margin: auto;
+  margin-right: -15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, white 50%, rgba(255, 255, 255, 0) 50%);
+  display: flex;
+  cursor: pointer;
+}
+.sidebarWrapper .darksoul-sidenav .header .btn .circle img {
+  margin: auto;
+  margin-left: 5px;
+}
+.sidebarWrapper .darksoul-sidenav .menus {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.sidebarWrapper .darksoul-sidenav .menus p {
+  width: 50%;
+  height: 20px;
+  margin-left: 15px;
+  font-size: xx-small;
+}
+.sidebarWrapper .darksoul-sidenav .menus .menu-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 0px;
+}
+
+.sidebarWrapper .darksoul-sidenav .menus .menu-container a {
+  text-decoration: none;
+  color:inherit
+}
+
+.sidebarWrapper .darksoul-sidenav .menus .menu-container .menu {
+  width: 90%;
+  height: 50px;
+  margin: auto;
+  display: flex;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.sidebarWrapper .darksoul-sidenav .menus .menu:hover {
+  background-color: white;
+  box-shadow: 1px 1px 20px white;
+}
+.sidebarWrapper .darksoul-sidenav .menus .menu-container .menu .menu-img {
+  margin: auto;
+  display: flex;
+  width: 20%;
+  height: 100%;
+}
+.sidebarWrapper .darksoul-sidenav .menus .menu-container .menu .menu-name {
+  margin: auto;
+  display: flex;
+  width: 80%;
+  height: 50%;
+}
+.sidebarWrapper .darksoul-sidenav .menus .menu .menu-img img {
+  margin: auto;
+}
+.sidebarWrapper .darksoul-sidenav .menus .menu .menu-name p {
+  height: fit-content;
+  font-size: x-small;
+  margin: auto;
+  margin-left: 0px;
+}
+.sidebarWrapper .service {
+  height: 30% !important;
+}
+.sidebarWrapper .darksoul-sidenav .footer {
+  margin: auto;
+  width: 100%;
+  height: 20%;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 20px;
+  display: flex;
+}
+.sidebarWrapper .darksoul-sidenav .footer .create-task {
+  width: 90%;
+  height: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 15px;
+}
+.sidebarWrapper .darksoul-sidenav .footer .create-task img {
+  margin: auto;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+.sidebarWrapper .darksoul-sidenav .footer .create-task img:hover {
+  filter: drop-shadow(1px 1px 15px #313131);
+}
+.sidebarWrapper .darksoul-sidenav .footer .create-task p {
+  font-size: x-small;
+  margin: auto;
+  margin-bottom: 0px;
+}
+.sidebarWrapper .darksoul-sidenav .footer .create-task span {
+  font-size: 7px;
+  margin: auto;
+  margin-top: 0px;
+}
+
+.sidebarWrapper .disclaimer {
+  margin: auto;
+  width: fit-content;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-family: "Belanosima", sans-serif;
+}
+.sidebarWrapper .disclaimer a {
+  text-decoration: none;
+  color: #202020;
+  font-family: "Kaushan Script", cursive;
+  font-weight: 900;
+}
+.sidebarWrapper .disclaimer a:hover {
+  text-decoration: overline;
+}
