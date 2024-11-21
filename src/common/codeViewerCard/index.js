@@ -19,11 +19,11 @@ const CodeViewerCard = ({ title, code, containerStyle }) => {
   // Function to check the available code and set the activeCode accordingly
   useEffect(() => {
     if (!code[activeCode]) {
-      if (code.react) {
+      if (code?.react) {
         setActiveCode('react');
-      } else if (code.css) {
+      } else if (code?.css) {
         setActiveCode('css');
-      } else if (code.html) {
+      } else if (code?.html) {
         setActiveCode('html');
       } else {
         setActiveCode(null); // No code available
@@ -113,17 +113,17 @@ const CodeViewerCard = ({ title, code, containerStyle }) => {
             }}>
               {activeCode === 'html' && isHtmlAvailable && (
                 <SyntaxHighlighter language="html" style={customTheme}>
-                  {code.html}
+                  {code?.html}
                 </SyntaxHighlighter>
               )}
               {activeCode === 'css' && isCssAvailable && (
                 <SyntaxHighlighter language="css" style={customTheme}>
-                  {code.css}
+                  {code?.css}
                 </SyntaxHighlighter>
               )}
               {activeCode === 'react' && isReactAvailable && (
                 <SyntaxHighlighter language="jsx" style={customTheme}>
-                  {code.react}
+                  {code?.react}
                 </SyntaxHighlighter>
               )}
               {activeCode && !code[activeCode] && (

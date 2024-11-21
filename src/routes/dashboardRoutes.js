@@ -9,7 +9,6 @@ import TypingGame from '../pages/games/typingGame';
 import GamesList from '../pages/games/gameList';
 import CarRacingGame from '../pages/games/carRacing';
 import ChatsUI from '../pages/chatsUI';
-import ChatsUIList from '../pages/chatsUI/chatsUIList';
 
 const DashboardRoutes = {
   path: '/',
@@ -58,14 +57,8 @@ const DashboardRoutes = {
       ]
     },
     {
-      path: 'chatUI',
-      element: <ChatsUI />,
-      children: [
-        {
-          path: '',
-          element: <ChatsUIList />
-        },
-      ]
+      path: 'chat-ui',
+      element: <ChatsUI />
     },
   ]
 };

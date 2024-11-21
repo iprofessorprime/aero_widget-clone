@@ -1,10 +1,6 @@
-import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import React, { useState } from "react";
-import ThreeWarriorHover from "./threeWarriorHover";
 import { Grid, GridItem } from "../../library";
-import CodeViewerCard from "../../common/codeViewerCard";
 import { CardsList } from "./cardData";
-import SwipeContentOnHover from "./swipeContentHover";
 import CodeViewerDialog from "../../components/codeViewer";
 
 const AllCards = () => {
@@ -33,8 +29,8 @@ const AllCards = () => {
         ))}
       </Grid>
 
-      {/* <SwipeContentOnHover /> */}
-      {openCodeViewer && <CodeViewerDialog open={openCodeViewer} selectedItem={selectedItem} onClose={handleCloseModal} />
+      {openCodeViewer && 
+      <CodeViewerDialog open={openCodeViewer} selectedItem={selectedItem} onClose={handleCloseModal} />
       }
     </>
   );
