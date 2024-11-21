@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { carRacingCover, typingGameCover } from '../../assets';
 import MainCard from '../../components/mainCard';
 
-const GamesList = () => {
+const ChatsUIList = () => {
   const navigate = useNavigate();
 
   const gamesList = [
@@ -43,4 +43,4 @@ const GamesList = () => {
   );
 };
 
-export default GamesList;
+export default ChatsUIList;
