@@ -27,6 +27,13 @@ const management = [
         url: "/games",
         icon: '',
       },
+      {
+        id: "chatsUI",
+        title: "Chat UI",
+        type: "item",
+        url: "/chat-ui",
+        icon: '',
+      },
       // {
       //   id: "colors",
       //   title: "Colors",

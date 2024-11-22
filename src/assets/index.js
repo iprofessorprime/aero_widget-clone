@@ -6,6 +6,7 @@ import darkRiderTitle from './images/dark_rider-title.png';
 import darkRiderCover from './images/dark_rider-cover.jpg';
 import typingGameCover from './images/typingGame.jpeg';
 import carRacingCover from './images/carRacing.jpeg';
+import chatBotPic from './images/chat-bot.jpeg';
 
 export {
   forceMageCharacter,
@@ -15,5 +16,6 @@ export {
   darkRiderTitle,
   darkRiderCover,
   typingGameCover,
-  carRacingCover
+  carRacingCover,
+  chatBotPic
 };
