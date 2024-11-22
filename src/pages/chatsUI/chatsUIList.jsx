@@ -69,7 +69,6 @@ const ChatsUIList = () => {
           onClose={handleCloseModal}
         />
       )}
-      <AudioEqualizer/>
     </>
   );
 };

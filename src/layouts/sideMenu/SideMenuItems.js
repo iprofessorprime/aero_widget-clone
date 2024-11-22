@@ -34,6 +34,13 @@ const management = [
         url: "/chat-ui",
         icon: '',
       },
+      {
+        id: "audio",
+        title: "audio",
+        type: "item",
+        url: "/audio",
+        icon: '',
+      },
       // {
       //   id: "colors",
       //   title: "Colors",
