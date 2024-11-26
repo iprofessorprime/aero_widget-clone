@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "./themeProvider";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const AppContainer = styled.div`
   margin: 0;
@@ -125,7 +125,14 @@ const CloudTwo = styled(CloudBase)`
     right: 5%;
   }
 `;
-
+const twinkle = keyframes`
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+`;
 const Star = styled.div`
   position: absolute;
   background-color: white;
@@ -143,15 +150,31 @@ const Star = styled.div`
   );
   width: 3%;
   height: 3%;
-  opacity: ${({ isVisible }) => (isVisible ? "1" : "0")};
+  opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
   transition: 1s;
-  ${({ isVisible }) => isVisible && "transform: scale(1.5);"}
+  transform: ${({ isVisible }) => (isVisible ? 'scale(1.5)' : 'scale(1)')};
+  ${({ isVisible }) =>
+    isVisible &&
+    css`
+      animation: ${twinkle} 2s infinite;
+    `}
 `;
 
 const ThemeSwitcher = ({ width = 300, height = 150 }) => {
   const { mode, toggleMode } = useTheme();
   const isNight = mode === "dark";
+  const generateRandomStars = (count) => {
+    const stars = [];
+    for (let i = 0; i < count; i++) {
+      const top = `${Math.random() * 80 + 10}%`; 
+      const leftOrRight = Math.random() > 0.5 ? 'left' : 'right'; 
+      const position = `${Math.random() * 80}%`; 
 
+      stars.push({ top, [leftOrRight]: position });
+    }
+    return stars;
+  };
+  const stars = generateRandomStars(10);
   return (
     <AppContainer isNight={isNight}>
       <SwitchContainer>
@@ -166,10 +189,13 @@ const ThemeSwitcher = ({ width = 300, height = 150 }) => {
             <Circle isNight={isNight} height={height} />
             <CloudOne isNight={isNight} width={width} height={height} />
             <CloudTwo isNight={isNight} width={width} height={height} />
-            <Star isVisible={isNight} style={{ top: "20%", left: "50%" }} />
-            <Star isVisible={isNight} style={{ top: "40%", right: "30%" }} />
-            <Star isVisible={isNight} style={{ top: "60%", left: "10%" }} />
-            <Star isVisible={isNight} style={{ top: "70%", left: "70%" }} />
+            {stars.map((star, index) => (
+              <Star
+                key={index}
+                isVisible={isNight}
+                style={{ top: star.top, ...star }}
+              />
+            ))}
           </Slider>
         </Switch>
       </SwitchContainer>

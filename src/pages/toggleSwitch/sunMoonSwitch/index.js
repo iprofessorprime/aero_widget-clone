@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components';
-import { useTheme } from '../../../themes';
+import styled, { css, keyframes } from 'styled-components';
 const AppContainer = styled.div`
   margin: 0;
   padding: 0;
@@ -125,6 +124,14 @@ const CloudTwo = styled(CloudBase)`
   }
 `;
 
+const twinkle = keyframes`
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+`;
 const Star = styled.div`
   position: absolute;
   background-color: white;
@@ -142,9 +149,14 @@ const Star = styled.div`
   );
   width: 3%;
   height: 3%;
-  opacity: ${({ isVisible }) => (isVisible ? "1" : "0")};
+  opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
   transition: 1s;
-  ${({ isVisible }) => isVisible && "transform: scale(1.5);"}
+  transform: ${({ isVisible }) => (isVisible ? 'scale(2)' : 'scale(1)')};
+  ${({ isVisible }) =>
+    isVisible &&
+    css`
+      animation: ${twinkle} 2s infinite;
+    `}
 `;
 const SunMoonSwitch = ({ width = 200, height = 80 }) => {
   const [isNight, setIsNight] = useState(false);
@@ -152,29 +164,44 @@ const SunMoonSwitch = ({ width = 200, height = 80 }) => {
   const toggleMode = () => {
     setIsNight((prev) => !prev);
   };
+  const generateRandomStars = (count) => {
+    const stars = [];
+    for (let i = 0; i < count; i++) {
+      const top = `${Math.random() * 80 + 10}%`; 
+      const leftOrRight = Math.random() > 0.5 ? 'left' : 'right'; 
+      const position = `${Math.random() * 80}%`; 
+
+      stars.push({ top, [leftOrRight]: position });
+    }
+    return stars;
+  };
+  const stars = generateRandomStars(10);
   return (
     <AppContainer isNight={isNight}>
-    <SwitchContainer>
-      <Switch width={width} height={height} isNight={isNight}>
-        <input
-          type="checkbox"
-          id="toggleSwitch"
-          onChange={toggleMode}
-          style={{ display: "none" }}
-        />
-        <Slider>
-          <Circle isNight={isNight} height={height} />
-          <CloudOne isNight={isNight} width={width} height={height} />
-          <CloudTwo isNight={isNight} width={width} height={height} />
-          <Star isVisible={isNight} style={{ top: "20%", left: "50%" }} />
-          <Star isVisible={isNight} style={{ top: "40%", right: "30%" }} />
-          <Star isVisible={isNight} style={{ top: "60%", left: "10%" }} />
-          <Star isVisible={isNight} style={{ top: "70%", left: "70%" }} />
-        </Slider>
-      </Switch>
-    </SwitchContainer>
-  </AppContainer>
-  )
-}
+      <SwitchContainer>
+        <Switch width={width} height={height} isNight={isNight}>
+          <input
+            type="checkbox"
+            id="toggleSwitch"
+            onChange={toggleMode}
+            style={{ display: "none" }}
+          />
+          <Slider>
+            <Circle isNight={isNight} height={height} />
+            <CloudOne isNight={isNight} width={width} height={height} />
+            <CloudTwo isNight={isNight} width={width} height={height} />
+            {stars.map((star, index) => (
+              <Star
+                key={index}
+                isVisible={isNight}
+                style={{ top: star.top, ...star }}
+              />
+            ))}
+          </Slider>
+        </Switch>
+      </SwitchContainer>
+    </AppContainer>
+  );
+};
 
 export default SunMoonSwitch
