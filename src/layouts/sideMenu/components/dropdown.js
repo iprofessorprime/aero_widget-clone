@@ -9,11 +9,11 @@ const DropdownWrapper = styled.div`
   justify-content: center;
   font-family: "Poppins", sans-serif;
   width: 90%;
+  margin: auto;
 `;
 
 const DropdownButton = styled.div`
   // background-color: #ffffff;
-  border: 1px solid #ccc;
   padding: 10px;
   cursor: pointer;
   display: flex;
@@ -24,6 +24,7 @@ const DropdownButton = styled.div`
   position: relative;
   width: 90%;
   color: white;
+  transition: 0.3s;
 
   &:hover {
     background-color: #f9f9f9;
@@ -91,7 +92,9 @@ const DropdownMenu = ({ item, drawerOpen }) => {
       <DropdownButton onClick={toggleDropdown}>
         {item.title}
         <ArrowIcon isOpen={isOpen}>▼</ArrowIcon>
-      {isOpen && <DropdownContent>{renderItems(item.children)}</DropdownContent>}
+        {isOpen && (
+          <DropdownContent>{renderItems(item.children)}</DropdownContent>
+        )}
       </DropdownButton>
     </DropdownWrapper>
   );
