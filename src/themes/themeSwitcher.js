@@ -2,7 +2,6 @@ import React from "react";
 import { useTheme } from "./themeProvider";
 import styled from "styled-components";
 
-// Container for the app
 const AppContainer = styled.div`
   margin: 0;
   padding: 0;

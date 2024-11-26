@@ -9,6 +9,7 @@ import TypingGame from '../pages/games/typingGame';
 import GamesList from '../pages/games/gameList';
 import CarRacingGame from '../pages/games/carRacing';
 import ChatsUI from '../pages/chatsUI';
+import ToggleSwitchPage from '../pages/toggleSwitch';
 
 const DashboardRoutes = {
   path: '/',
@@ -59,6 +60,10 @@ const DashboardRoutes = {
     {
       path: 'chat-ui',
       element: <ChatsUI />
+    },
+    {
+      path: 'toggle-switch',
+      element: <ToggleSwitchPage />
     },
   ]
 };
