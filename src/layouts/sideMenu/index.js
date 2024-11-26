@@ -41,11 +41,9 @@ const renderMenuItems = (items, drawerOpen, expanded, handleChange, activeLink) 
           </MenuToggle>
         </MenuContainer>
         case ("dropdown"):
-          return <MenuContainer>
-            <DropdownMenu key={item.id} item={item} drawerOpen={drawerOpen}>
+          return <DropdownMenu key={item.id} item={item} drawerOpen={drawerOpen}>
               {renderMenuItems(item.children, drawerOpen, expanded, handleChange, activeLink)}
             </DropdownMenu>
-          </MenuContainer>
       default:
         return null
     }

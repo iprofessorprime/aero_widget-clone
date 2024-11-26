@@ -6,7 +6,9 @@ const DropdownWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   font-family: "Poppins", sans-serif;
+  width: 90%;
 `;
 
 const DropdownButton = styled.div`
@@ -20,9 +22,13 @@ const DropdownButton = styled.div`
   border-radius: 5px;
   font-size: 14px;
   position: relative;
+  width: 90%;
+  color: white;
 
   &:hover {
     background-color: #f9f9f9;
+    box-shadow: 1px 1px 20px white;
+    color: black;
   }
 `;
 
@@ -66,7 +72,7 @@ const StyledLink = styled(Link)`
   color: inherit;
 `;
 
-const DropdownMenu = ({ item }) => {
+const DropdownMenu = ({ item, drawerOpen }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
