@@ -47,33 +47,30 @@ const Slider = styled.div`
 `;
 const slideLeftToRight = keyframes`
   0% {
-    left: 2.8%;
-    transform: translateX(0);
-  }
-  50% {
-    left: 50%;
-    transform: translateX(-50%);
+    opacity: 0;
+    right: 50%;
+    transform: translateX(0%);
   }
   100% {
-    left: 97.2%;
-    transform: translateX(-100%);
+    opacity: 1;
+    right: 2.8%;
+    transform: translateX(-8%);
   }
 `;
 
 const slideRightToLeft = keyframes`
   0% {
-    right: 2.8%;
-    transform: translateX(0);
-  }
-  50% {
-    right: 50%;
-    transform: translateX(50%);
+    opacity: 0;
+    left: 50%;
+    transform: translateX(10%);
   }
   100% {
-    right: 97.2%;
-    transform: translateX(100%);
+    opacity: 1;
+    left: 2.8%;
+    transform: translateX(0%);
   }
 `;
+
 const Circle = styled.div`
   position: absolute;
   width: ${({ height }) => `${height * 0.9}px`}; 
@@ -86,8 +83,11 @@ const Circle = styled.div`
       ? "radial-gradient(circle, #f4f4f4 30%, #e0e0e0 70%)"
       : "radial-gradient(circle, #ffd700 30%, #ffa500 70%)"};
   box-shadow: 0 0 10px ${({ isNight }) => (isNight ? "#f4f4f4" : "#ffd700")};
-  // ${({ isNight }) => isNight ? "right: 2.8%;" : "left: 2.8%"}
-  animation: ${({ isNight }) => isNight ? slideRightToLeft : slideLeftToRight} 5s infinite alternate;
+  ${({ isNight }) => 
+    isNight 
+      ? "right: 2.8%; left: unset;" 
+      : "left: 2.8%; right: unset;"}
+  animation: ${({ isNight }) => (isNight ? slideLeftToRight : slideRightToLeft)} 1s 1 alternate;
 `;
 
 const CloudBase = styled.div`
