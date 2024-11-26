@@ -43,7 +43,35 @@ const Slider = styled.div`
   bottom: 0;
   transition: 1s;
 `;
+const slideLeftToRight = keyframes`
+  0% {
+    left: 2.8%;
+    transform: translateX(0);
+  }
+  50% {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  100% {
+    left: 97.2%;
+    transform: translateX(-100%);
+  }
+`;
 
+const slideRightToLeft = keyframes`
+  0% {
+    right: 2.8%;
+    transform: translateX(0);
+  }
+  50% {
+    right: 50%;
+    transform: translateX(50%);
+  }
+  100% {
+    right: 97.2%;
+    transform: translateX(100%);
+  }
+`;
 const Circle = styled.div`
   position: absolute;
   width: ${({ height }) => `${height * 0.9}px`}; 
@@ -69,10 +97,13 @@ const CloudBase = styled.div`
   width: ${({ width }) => `${width * 0.3}px`};
   height: ${({ height }) => `${height * 0.2}px`};
 `;
-
+const generateRandomCloudPosition = () => {
+  const top = `${Math.random() * 70 + 10}%`; 
+  return top;
+};
 const CloudOne = styled(CloudBase)`
-  top: ${({ isNight }) => isNight ? '30%' : '30%'};
-  right: ${({ isNight }) => isNight ? '50%' : '20%'};
+  top: ${()=>generateRandomCloudPosition()};
+  right: ${()=>generateRandomCloudPosition()};
 
   &::before {
     content: "";
@@ -98,8 +129,8 @@ const CloudOne = styled(CloudBase)`
 `;
 
 const CloudTwo = styled(CloudBase)`
-  top: ${({ isNight }) => isNight ? '60%' : '50%'};
-  right: ${({ isNight }) => isNight ? '25%' : '50%'};
+  top: ${()=>generateRandomCloudPosition()};
+  right: ${()=>generateRandomCloudPosition()};
 
   &::before {
     content: "";

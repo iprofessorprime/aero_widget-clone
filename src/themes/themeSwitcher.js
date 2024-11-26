@@ -45,7 +45,35 @@ const Slider = styled.div`
   bottom: 0;
   transition: 1s;
 `;
+const slideLeftToRight = keyframes`
+  0% {
+    left: 2.8%;
+    transform: translateX(0);
+  }
+  50% {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  100% {
+    left: 97.2%;
+    transform: translateX(-100%);
+  }
+`;
 
+const slideRightToLeft = keyframes`
+  0% {
+    right: 2.8%;
+    transform: translateX(0);
+  }
+  50% {
+    right: 50%;
+    transform: translateX(50%);
+  }
+  100% {
+    right: 97.2%;
+    transform: translateX(100%);
+  }
+`;
 const Circle = styled.div`
   position: absolute;
   width: ${({ height }) => `${height * 0.9}px`}; 
@@ -58,8 +86,8 @@ const Circle = styled.div`
       ? "radial-gradient(circle, #f4f4f4 30%, #e0e0e0 70%)"
       : "radial-gradient(circle, #ffd700 30%, #ffa500 70%)"};
   box-shadow: 0 0 10px ${({ isNight }) => (isNight ? "#f4f4f4" : "#ffd700")};
-  ${({ isNight }) =>
-    isNight ? "right: 2.8%;" : "left: 2.8%; transform: scale(1);"}
+  // ${({ isNight }) => isNight ? "right: 2.8%;" : "left: 2.8%"}
+  animation: ${({ isNight }) => isNight ? slideRightToLeft : slideLeftToRight} 5s infinite alternate;
 `;
 
 const CloudBase = styled.div`
@@ -71,10 +99,13 @@ const CloudBase = styled.div`
   width: ${({ width }) => `${width * 0.3}px`};
   height: ${({ height }) => `${height * 0.2}px`};
 `;
-
+const generateRandomCloudPosition = () => {
+  const top = `${Math.random() * 70 + 10}%`; 
+  return top;
+};
 const CloudOne = styled(CloudBase)`
-  top: ${({ isNight }) => isNight ? '30%' : '30%'};
-  right: ${({ isNight }) => isNight ? '50%' : '20%'};
+  top: ${()=>generateRandomCloudPosition()};
+  right: ${()=>generateRandomCloudPosition()};
 
   &::before {
     content: "";
@@ -100,8 +131,8 @@ const CloudOne = styled(CloudBase)`
 `;
 
 const CloudTwo = styled(CloudBase)`
-  top: ${({ isNight }) => isNight ? '60%' : '50%'};
-  right: ${({ isNight }) => isNight ? '25%' : '50%'};
+  top: ${()=>generateRandomCloudPosition()};
+  right: ${()=>generateRandomCloudPosition()};
 
   &::before {
     content: "";
