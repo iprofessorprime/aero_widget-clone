@@ -10,11 +10,10 @@ import { ThemeProvider } from "./themes";
 
 const App = () => {
   const [showWelcome, setShowWelcome] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState({}); // Theme state
+  const [userThemeKey, setUserThemeKey] = useState(null);
 
   useEffect(() => {
     const hasVisited = localStorage.getItem("hasVisitedWelcome");
-
     if (!hasVisited) {
       setShowWelcome(true);
       const timer = setTimeout(() => {
@@ -26,21 +25,26 @@ const App = () => {
     }
   }, []);
 
-  // Function to update theme
-  const updateTheme = (theme) => {
-    setCurrentTheme(theme);
-    localStorage.setItem('theme', theme.name);
-  };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const user = {themeKey:''}; // Replace with actual API call
+      setUserThemeKey(user?.themeKey || "defaultTheme"); // Fallback to a default theme
+    };
 
+    fetchUserData();
+  }, []);
   if (showWelcome) {
     return <WelcomePage />;
   }
-
+  
+  if (userThemeKey === null) {
+    // Show a loading indicator or return null until the user theme is loaded
+    return <div>Loading...</div>;
+  }
   return (
     <ThemeProvider>
       <ToastContainer position="top-right" autoClose={3000} />
       <div className='container'>
-        {/* <Themes onThemeChange={updateTheme} />  */}
         <BrowserRouter>
           <AppRouter />
         </BrowserRouter>
