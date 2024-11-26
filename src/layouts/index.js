@@ -28,7 +28,6 @@ const Layout = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      {/* <Header /> */}
       <div className={`sidebarWrapper`} style={{ width: drawerOpen ? 240 : 60 }}>
         <div id="sidenav" className={`darksoul-sidenav ${drawerOpen ? "open" : "closed"}`}>
           <div className="header">
@@ -60,6 +59,7 @@ const Layout = () => {
         </div>
       </div>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Header />
         <Outlet />
       </Box>
     </Box>
