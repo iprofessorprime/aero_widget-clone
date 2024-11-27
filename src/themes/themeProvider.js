@@ -7,7 +7,7 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children, defaultThemeKey = 'defaultTheme' }) => {
   const [currentThemeKey, setCurrentThemeKey] = useState(defaultThemeKey);
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState("dark");
 
   // Find the active theme based on currentThemeKey and mode
   const activeTheme = themeConfigs.find(theme => theme.key === currentThemeKey)?.theme[mode];

@@ -7,13 +7,15 @@ import darkRiderCover from './images/dark_rider-cover.jpg';
 import typingGameCover from './images/typingGame.jpeg';
 import carRacingCover from './images/carRacing.jpeg';
 import chatBotPic from './images/chat-bot.jpeg';
-import basicThemeBackground from './images/bloom-light-background.png';
+import basicThemeBgLight from './images/bloom-light-background.png';
+import basicThemeBgDark from './images/bg4.jpeg';
 import redThemeBackground from './images/red-flames.jpeg';
 import greenThemeBackground from './images/GreenWaves.jpeg';
 import krishnaThemeBackground from './images/Krishna.jpeg';
 
 export {
-  basicThemeBackground,
+  basicThemeBgLight,
+  basicThemeBgDark,
   krishnaThemeBackground,
   redThemeBackground,
   greenThemeBackground,

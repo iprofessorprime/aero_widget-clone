@@ -1,4 +1,4 @@
-import { basicThemeBackground, greenThemeBackground, krishnaThemeBackground, redThemeBackground } from "../assets";
+import { basicThemeBgLight, basicThemeBgDark, greenThemeBackground, redThemeBackground } from "../assets";
 import { commonColors } from "./commonColors";
 
 const baseThemeConfigs = [
@@ -7,7 +7,7 @@ const baseThemeConfigs = [
     key: 'defaultTheme',
     theme: {
       light: {
-        backgroundImage: basicThemeBackground,
+        backgroundImage: basicThemeBgLight,
         background: '#f0f0f0',
         text: '#000000',
         primary: {
@@ -32,7 +32,7 @@ const baseThemeConfigs = [
         },
       },
       dark: {
-        backgroundImage: redThemeBackground,
+        backgroundImage: basicThemeBgDark,
         background: '#212121',
         text: '#ffffff',
         primary: {

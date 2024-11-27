@@ -6,10 +6,9 @@ const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: ${({ theme }) => theme.background};
+  background: ${({ theme }) => `${theme.background}90`};
   color: ${({ theme }) => theme.text};
   padding: 1rem 2rem;
-  border-bottom: 2px solid ${({ theme }) => theme.primary.main};
 `;
 
 const Title = styled.h1`
