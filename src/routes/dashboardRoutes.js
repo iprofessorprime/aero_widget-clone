@@ -20,15 +20,15 @@ const DashboardRoutes = {
   children: [
     {
       id: "dashboard-home",
-      type: "item",
+      type: "",
       title: "Dashboard",
       path: '',
       element: <Dashboard />
     },
     {
       id: "dashboard-page",
-      type: "",
-      title: "Dashboard Page",
+      type: "item",
+      title: "Dashboard",
       path: 'dashboard',
       element: <Dashboard />
     },

@@ -16,19 +16,6 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-const SwitcherButton = styled.button`
-  background: ${({ theme }) => theme.primary.main};
-  color: ${({ theme }) => theme.text};
-  border: none;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  &:hover {
-    background: ${({ theme }) => theme.primary.shades[300]};
-  }
-`;
-
 const Header = ({ handleDrawerOpen, drawerOpen }) => {
   const { theme, mode, toggleMode, switchTheme } = useTheme(); 
   return (

@@ -3,7 +3,7 @@ import { commonColors } from "./commonColors";
 
 const baseThemeConfigs = [
   {
-    name: 'Red Theme',
+    name: 'Default Theme',
     key: 'defaultTheme',
     theme: {
       light: {
@@ -11,23 +11,23 @@ const baseThemeConfigs = [
         background: '#f0f0f0',
         text: '#000000',
         primary: {
-          main: '#f44336',
+          main: '#D6ECFD',
           shades: {
-            100: '#ffebee',
-            300: '#e57373',
-            500: '#f44336',
-            700: '#d32f2f',
-            900: '#b71c1c',
+            100: '#e4f3fe',
+            300: '#b0d8f7',
+            500: '#D6ECFD',
+            700: '#a0c1e3',
+            900: '#7a9ecf',
           },
         },
         secondary: {
-          main: '#9e9e9e',
+          main: '#D6ECFD',
           shades: {
-            100: '#f1f1f1',
-            300: '#bdbdbd',
-            500: '#9e9e9e',
-            700: '#616161',
-            900: '#212121',
+            100: '#e4f3fe',
+            300: '#b0d8f7',
+            500: '#D6ECFD',
+            700: '#a0c1e3',
+            900: '#7a9ecf',
           },
         },
       },
@@ -36,27 +36,28 @@ const baseThemeConfigs = [
         background: '#212121',
         text: '#ffffff',
         primary: {
-          main: '#f44336',
+          main: '#345069',
           shades: {
-            100: '#ffcdd2',
-            300: '#e57373',
-            500: '#f44336',
-            700: '#d32f2f',
-            900: '#b71c1c',
+            100: '#5b7a8e',
+            300: '#456277',
+            500: '#345069',
+            700: '#24374a',
+            900: '#162635',
           },
         },
         secondary: {
-          main: '#9e9e9e',
+          main: '#345069',
           shades: {
-            100: '#f5f5f5',
-            300: '#eeeeee',
-            500: '#9e9e9e',
-            700: '#616161',
-            900: '#212121',
+            100: '#5b7a8e',
+            300: '#456277',
+            500: '#345069',
+            700: '#24374a',
+            900: '#162635',
           },
         },
       },
     },
+
   },
   {
     name: 'Red Theme',
