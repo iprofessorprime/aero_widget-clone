@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { themeConfigs } from "./themeConfigs";
+import ThemedContainer from "./themedContainer";
+import ThemeSwitcher from "./themeSwitcher";
 
 const ThemeContext = createContext();
 
-export const ThemeProvider = ({ children, defaultThemeKey = themeConfigs[0].key }) => {
+export const ThemeProvider = ({ children, defaultThemeKey = 'defaultTheme' }) => {
   const [currentThemeKey, setCurrentThemeKey] = useState(defaultThemeKey);
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState("dark");
 
   // Find the active theme based on currentThemeKey and mode
   const activeTheme = themeConfigs.find(theme => theme.key === currentThemeKey)?.theme[mode];
@@ -32,7 +34,10 @@ export const ThemeProvider = ({ children, defaultThemeKey = themeConfigs[0].key 
         switchTheme,
       }}
     >
+      <ThemedContainer>
+      <ThemeSwitcher themesData={themeConfigs} />
       {children}
+      </ThemedContainer>
     </ThemeContext.Provider>
   );
 };

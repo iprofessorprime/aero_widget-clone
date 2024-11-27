@@ -1,8 +1,64 @@
-import { redThemeBackground } from "../assets";
+import { basicThemeBgLight, basicThemeBgDark, greenThemeBackground, redThemeBackground } from "../assets";
 import { commonColors } from "./commonColors";
 
-// Base theme configurations
 const baseThemeConfigs = [
+  {
+    name: 'Default Theme',
+    key: 'defaultTheme',
+    theme: {
+      light: {
+        backgroundImage: basicThemeBgLight,
+        background: '#f0f0f0',
+        text: '#000000',
+        primary: {
+          main: '#D6ECFD',
+          shades: {
+            100: '#e4f3fe',
+            300: '#b0d8f7',
+            500: '#D6ECFD',
+            700: '#a0c1e3',
+            900: '#7a9ecf',
+          },
+        },
+        secondary: {
+          main: '#D6ECFD',
+          shades: {
+            100: '#e4f3fe',
+            300: '#b0d8f7',
+            500: '#D6ECFD',
+            700: '#a0c1e3',
+            900: '#7a9ecf',
+          },
+        },
+      },
+      dark: {
+        backgroundImage: basicThemeBgDark,
+        background: '#212121',
+        text: '#ffffff',
+        primary: {
+          main: '#345069',
+          shades: {
+            100: '#5b7a8e',
+            300: '#456277',
+            500: '#345069',
+            700: '#24374a',
+            900: '#162635',
+          },
+        },
+        secondary: {
+          main: '#345069',
+          shades: {
+            100: '#5b7a8e',
+            300: '#456277',
+            500: '#345069',
+            700: '#24374a',
+            900: '#162635',
+          },
+        },
+      },
+    },
+
+  },
   {
     name: 'Red Theme',
     key: 'redTheme',
@@ -59,7 +115,62 @@ const baseThemeConfigs = [
       },
     },
   },
-  // Add more themes here as needed
+  {
+    name: 'green',
+    key: 'greenTheme',
+    theme: {
+      light: {
+        backgroundImage: greenThemeBackground,
+        background: '#e8f5e9',
+        text: '#000000',
+        primary: {
+          main: '#4caf50',
+          shades: {
+            100: '#c8e6c9',
+            300: '#4caf50',
+            500: '#4caf50',
+            700: '#388e3c',
+            900: '#1b5e20',
+          }
+        },
+        secondary: {
+          main: '#9e9e9e',
+          shades: {
+            100: '#f1f1f1',
+            300: '#bdbdbd',
+            500: '#9e9e9e',
+            700: '#616161',
+            900: '#212121',
+          }
+        },
+      },
+      dark: {
+        backgroundImage: greenThemeBackground,
+        background: '#121212',
+        text: '#ffffff',
+        primary: {
+          main: '#4caf50',
+          shades: {
+            100: '#a5d6a7',
+            300: '#4caf50',
+            500: '#4caf50',
+            700: '#388e3c',
+            900: '#1b5e20',
+          }
+        },
+        secondary: {
+          main: '#9e9e9e',
+          shades: {
+            100: '#f5f5f5',
+            300: '#eeeeee',
+            500: '#9e9e9e',
+            700: '#616161',
+            900: '#212121',
+          }
+        },
+      },
+    },
+  },
 ];
 
 /**

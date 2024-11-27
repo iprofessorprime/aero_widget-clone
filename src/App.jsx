@@ -8,6 +8,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "./themes";
 
+const getLoggedUserData = async () => {
+  return new Promise(resolve =>
+    setTimeout(() => resolve({ themeKey: "redTheme" }), 200)
+  );
+};
 const App = () => {
   const [showWelcome, setShowWelcome] = useState(false);
   const [userThemeKey, setUserThemeKey] = useState(null);
@@ -27,8 +32,8 @@ const App = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const user = {themeKey:''}; // Replace with actual API call
-      setUserThemeKey(user?.themeKey || "defaultTheme"); // Fallback to a default theme
+      const user = await getLoggedUserData();
+      setUserThemeKey(user?.themeKey || "defaultTheme"); 
     };
 
     fetchUserData();
@@ -38,11 +43,10 @@ const App = () => {
   }
   
   if (userThemeKey === null) {
-    // Show a loading indicator or return null until the user theme is loaded
     return <div>Loading...</div>;
   }
   return (
-    <ThemeProvider>
+    <ThemeProvider  defaultThemeKey={userThemeKey}>
       <ToastContainer position="top-right" autoClose={3000} />
       <div className='container'>
         <BrowserRouter>

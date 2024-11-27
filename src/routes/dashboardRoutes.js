@@ -10,6 +10,7 @@ import GamesList from '../pages/games/gameList';
 import CarRacingGame from '../pages/games/carRacing';
 import ChatsUI from '../pages/chatsUI';
 import ToggleSwitchPage from '../pages/toggleSwitch';
+import AudioPage from '../pages/audioBase';
 
 const DashboardRoutes = {
   id: "group-management",
@@ -20,15 +21,15 @@ const DashboardRoutes = {
   children: [
     {
       id: "dashboard-home",
-      type: "item",
+      type: "",
       title: "Dashboard",
       path: '',
       element: <Dashboard />
     },
     {
       id: "dashboard-page",
-      type: "",
-      title: "Dashboard Page",
+      type: "item",
+      title: "Dashboard",
       path: 'dashboard',
       element: <Dashboard />
     },
@@ -137,6 +138,10 @@ const DashboardRoutes = {
     {
       path: 'toggle-switch',
       element: <ToggleSwitchPage />
+    },
+    {
+      path: 'audio',
+      element: <AudioPage />
     },
   ]
 };
