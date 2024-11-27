@@ -4,18 +4,21 @@ import "./index.css";
 import AppRouter from "./routes";
 import { BrowserRouter } from "react-router-dom";
 import WelcomePage from "./pages/welcome";
-import { ThemeProvider } from "aero-fantom";
-import Themes from './themes'; // Adjust path as necessary
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
+import { ThemeProvider } from "./themes";
 
+const getLoggedUserData = async () => {
+  return new Promise(resolve =>
+    setTimeout(() => resolve({ themeKey: "" }), 200)
+  );
+};
 const App = () => {
   const [showWelcome, setShowWelcome] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState({}); // Theme state
+  const [userThemeKey, setUserThemeKey] = useState(null);
 
   useEffect(() => {
     const hasVisited = localStorage.getItem("hasVisitedWelcome");
-
     if (!hasVisited) {
       setShowWelcome(true);
       const timer = setTimeout(() => {
@@ -27,21 +30,25 @@ const App = () => {
     }
   }, []);
 
-  // Function to update theme
-  const updateTheme = (theme) => {
-    setCurrentTheme(theme);
-    localStorage.setItem('theme', theme.name);
-  };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const user = await getLoggedUserData();
+      setUserThemeKey(user?.themeKey || "defaultTheme"); 
+    };
 
+    fetchUserData();
+  }, []);
   if (showWelcome) {
     return <WelcomePage />;
   }
-
+  
+  if (userThemeKey === null) {
+    return <div>Loading...</div>;
+  }
   return (
-    <ThemeProvider themeColors={currentTheme}>
+    <ThemeProvider  defaultThemeKey={userThemeKey}>
       <ToastContainer position="top-right" autoClose={3000} />
       <div className='container'>
-        {/* <Themes onThemeChange={updateTheme} />  */}
         <BrowserRouter>
           <AppRouter />
         </BrowserRouter>

@@ -35,10 +35,10 @@ const management = [
         icon: '',
       },
       {
-        id: "audio",
-        title: "audio",
+        id: "toggleSwitch",
+        title: "Toggles",
         type: "item",
-        url: "/audio",
+        url: "/toggle-switch",
         icon: '',
       },
       // {
