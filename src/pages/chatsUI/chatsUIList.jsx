@@ -6,6 +6,7 @@ import { chatBotPic } from "../../assets";
 import MainCard from "../../components/mainCard";
 import CodeViewerDialog from "../../components/codeViewer";
 import SimpleChatBot from "./chatBot";
+import AudioEqualizer from "../audioBase";
 
 const ChatsUIList = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const ChatsUIList = () => {
   const gamesList = [
     {
       name: "Chat Bot",
-      image: chatBotPic,
+      image: '',
       title: "Chat Bot",
       searchKeys: ["Chat", "Chat bot"],
       element: <SimpleChatBot />,
@@ -55,7 +56,9 @@ const ChatsUIList = () => {
             <MainCard
               onClick={() => handleOpenModal(item)}
               data={{ backgroundImage: item.image, title: item.name }}
-            />
+            >
+              {item?.element}
+            </MainCard>
           </Grid>
         ))}
       </Grid>
@@ -66,6 +69,7 @@ const ChatsUIList = () => {
           onClose={handleCloseModal}
         />
       )}
+      <AudioEqualizer/>
     </>
   );
 };
