@@ -34,6 +34,13 @@ const management = [
         url: "/chat-ui",
         icon: '',
       },
+      {
+        id: "toggleSwitch",
+        title: "Toggles",
+        type: "item",
+        url: "/toggle-switch",
+        icon: '',
+      },
       // {
       //   id: "colors",
       //   title: "Colors",

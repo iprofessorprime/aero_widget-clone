@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { myThemesColors } from '../../themes/colors';
+// import { myThemesColors } from '../../themes/colors';
 import CurrentColorsList from './colorsList';
 
 const ColorsPage = () => {
-  const [currentTheme, setCurrentTheme] = useState(myThemesColors[0]); // Default to the first theme
+  // const [currentTheme, setCurrentTheme] = useState(myThemesColors[0]); // Default to the first theme
 
-  const chooseCustomTheme = (themeName) => {
-    const selectedTheme = myThemesColors.find(theme => theme.name === themeName);
-    if (selectedTheme) {
-      setCurrentTheme(selectedTheme);
-    }
-  };
+  // const chooseCustomTheme = (themeName) => {
+  //   const selectedTheme = myThemesColors.find(theme => theme.name === themeName);
+  //   if (selectedTheme) {
+  //     setCurrentTheme(selectedTheme);
+  //   }
+  // };
 
   return (
     <div>
@@ -23,7 +23,7 @@ const ColorsPage = () => {
           {theme.name}
         </button>
       ))} */}
-      <CurrentColorsList currentTheme={currentTheme} />
+      {/* <CurrentColorsList currentTheme={currentTheme} /> */}
     </div>
   );
 };

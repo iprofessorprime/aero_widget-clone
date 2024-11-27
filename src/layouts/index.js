@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Box, Divider, IconButton, Drawer as MuiDrawer } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import {  useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import SideMenu from './sideMenu';
 import Header from './header';
 import useResponsive from "../utils/useResponsive";
 import './sideMenu.css'
-import { SidebarWrapper, Headerw, Profile, ProfilePic, HeaderButton, ProfileName} from "./sideMenuStyles";
+import { SidebarWrapper, Headerw, Profile, ProfilePic, HeaderButton, ProfileName } from "./sideMenuStyles";
 
 const Layout = () => {
   const theme = useTheme();
@@ -60,8 +60,11 @@ const Layout = () => {
           <SideMenu drawerOpen={drawerOpen} />
         </div>
       </SidebarWrapper>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Outlet />
+      <Box sx={{width:'100%'}}>
+        <Header />
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Outlet />
+        </Box>
       </Box>
     </Box>
   );

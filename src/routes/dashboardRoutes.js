@@ -9,6 +9,7 @@ import TypingGame from '../pages/games/typingGame';
 import GamesList from '../pages/games/gameList';
 import CarRacingGame from '../pages/games/carRacing';
 import ChatsUI from '../pages/chatsUI';
+import ToggleSwitchPage from '../pages/toggleSwitch';
 
 const DashboardRoutes = {
   id: "group-management",
@@ -26,7 +27,7 @@ const DashboardRoutes = {
     },
     {
       id: "dashboard-page",
-      type: "item",
+      type: "",
       title: "Dashboard Page",
       path: 'dashboard',
       element: <Dashboard />
@@ -58,6 +59,13 @@ const DashboardRoutes = {
       type: "item",
       path: 'calendars',
       element: <Calendars />
+    },
+    {
+      id: "toggle-switch",
+      title: "Toggle-switch",
+      type: "item",
+      path: 'toggle-switch',
+      element: <ToggleSwitchPage />
     },
     {
       id: "dropdowngames",
@@ -125,6 +133,10 @@ const DashboardRoutes = {
       type: "item",
       path: 'chat-ui',
       element: <ChatsUI />
+    },
+    {
+      path: 'toggle-switch',
+      element: <ToggleSwitchPage />
     },
   ]
 };
