@@ -1,7 +1,6 @@
-import { basicThemeBackground, greenThemeBackground, redThemeBackground } from "../assets";
+import { basicThemeBackground, greenThemeBackground, krishnaThemeBackground, redThemeBackground } from "../assets";
 import { commonColors } from "./commonColors";
 
-// Base theme configurations
 const baseThemeConfigs = [
   {
     name: 'Red Theme',

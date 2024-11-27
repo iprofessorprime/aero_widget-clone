@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useTheme, ThemeSwitcher } from "../../themes";
+import { useTheme, ThemeModeSwitcher } from "../../themes";
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -36,7 +36,7 @@ const Header = ({ handleDrawerOpen, drawerOpen }) => {
     <HeaderWrapper theme={theme}>
       <Title>My Application</Title>
       <div>
-        <ThemeSwitcher width={60} height={30} />
+        <ThemeModeSwitcher width={60} height={30} />
       </div>
     </HeaderWrapper>
   );

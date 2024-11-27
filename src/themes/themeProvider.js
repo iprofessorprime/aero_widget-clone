@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { themeConfigs } from "./themeConfigs";
 import ThemedContainer from "./themedContainer";
+import ThemeSwitcher from "./themeSwitcher";
 
 const ThemeContext = createContext();
 
@@ -34,6 +35,7 @@ export const ThemeProvider = ({ children, defaultThemeKey = 'defaultTheme' }) =>
       }}
     >
       <ThemedContainer>
+      <ThemeSwitcher themesData={themeConfigs} />
       {children}
       </ThemedContainer>
     </ThemeContext.Provider>

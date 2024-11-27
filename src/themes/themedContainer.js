@@ -10,6 +10,7 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   color: ${({ theme }) => theme.text};
+  position: relative;
 `;
 
 const ThemedContainer = ({ children }) => {
