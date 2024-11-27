@@ -10,7 +10,7 @@ import { ThemeProvider } from "./themes";
 
 const getLoggedUserData = async () => {
   return new Promise(resolve =>
-    setTimeout(() => resolve({ themeKey: "" }), 200)
+    setTimeout(() => resolve({ themeKey: "redTheme" }), 200)
   );
 };
 const App = () => {
