@@ -27,7 +27,7 @@ const DashboardRoutes = {
     },
     {
       id: "dashboard-page",
-      type: "item",
+      type: "",
       title: "Dashboard Page",
       path: 'dashboard',
       element: <Dashboard />
