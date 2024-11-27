@@ -61,6 +61,13 @@ const DashboardRoutes = {
       element: <Calendars />
     },
     {
+      id: "toggle-switch",
+      title: "Toggle-switch",
+      type: "item",
+      path: 'toggle-switch',
+      element: <ToggleSwitchPage />
+    },
+    {
       id: "dropdowngames",
       title: "Games dropdown",
       type: "dropdown",
