@@ -1,4 +1,4 @@
-import { redThemeBackground } from "../assets";
+import { greenThemeBackground, redThemeBackground } from "../assets";
 import { commonColors } from "./commonColors";
 
 // Base theme configurations
@@ -59,7 +59,62 @@ const baseThemeConfigs = [
       },
     },
   },
-  // Add more themes here as needed
+  {
+    name: 'green',
+    key: 'greenTheme',
+    theme: {
+      light: {
+        backgroundImage: greenThemeBackground,
+        background: '#e8f5e9',
+        text: '#000000',
+        primary: {
+          main: '#4caf50',
+          shades: {
+            100: '#c8e6c9',
+            300: '#4caf50',
+            500: '#4caf50',
+            700: '#388e3c',
+            900: '#1b5e20',
+          }
+        },
+        secondary: {
+          main: '#9e9e9e',
+          shades: {
+            100: '#f1f1f1',
+            300: '#bdbdbd',
+            500: '#9e9e9e',
+            700: '#616161',
+            900: '#212121',
+          }
+        },
+      },
+      dark: {
+        backgroundImage: greenThemeBackground,
+        background: '#121212',
+        text: '#ffffff',
+        primary: {
+          main: '#4caf50',
+          shades: {
+            100: '#a5d6a7',
+            300: '#4caf50',
+            500: '#4caf50',
+            700: '#388e3c',
+            900: '#1b5e20',
+          }
+        },
+        secondary: {
+          main: '#9e9e9e',
+          shades: {
+            100: '#f5f5f5',
+            300: '#eeeeee',
+            500: '#9e9e9e',
+            700: '#616161',
+            900: '#212121',
+          }
+        },
+      },
+    },
+  },
 ];
 
 /**
