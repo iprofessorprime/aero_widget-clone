@@ -1,8 +1,64 @@
-import { greenThemeBackground, redThemeBackground } from "../assets";
+import { basicThemeBackground, greenThemeBackground, redThemeBackground } from "../assets";
 import { commonColors } from "./commonColors";
 
 // Base theme configurations
 const baseThemeConfigs = [
+  {
+    name: 'Red Theme',
+    key: 'defaultTheme',
+    theme: {
+      light: {
+        backgroundImage: basicThemeBackground,
+        background: '#f0f0f0',
+        text: '#000000',
+        primary: {
+          main: '#f44336',
+          shades: {
+            100: '#ffebee',
+            300: '#e57373',
+            500: '#f44336',
+            700: '#d32f2f',
+            900: '#b71c1c',
+          },
+        },
+        secondary: {
+          main: '#9e9e9e',
+          shades: {
+            100: '#f1f1f1',
+            300: '#bdbdbd',
+            500: '#9e9e9e',
+            700: '#616161',
+            900: '#212121',
+          },
+        },
+      },
+      dark: {
+        backgroundImage: redThemeBackground,
+        background: '#212121',
+        text: '#ffffff',
+        primary: {
+          main: '#f44336',
+          shades: {
+            100: '#ffcdd2',
+            300: '#e57373',
+            500: '#f44336',
+            700: '#d32f2f',
+            900: '#b71c1c',
+          },
+        },
+        secondary: {
+          main: '#9e9e9e',
+          shades: {
+            100: '#f5f5f5',
+            300: '#eeeeee',
+            500: '#9e9e9e',
+            700: '#616161',
+            900: '#212121',
+          },
+        },
+      },
+    },
+  },
   {
     name: 'Red Theme',
     key: 'redTheme',

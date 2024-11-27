@@ -4,7 +4,7 @@ import ThemedContainer from "./themedContainer";
 
 const ThemeContext = createContext();
 
-export const ThemeProvider = ({ children, defaultThemeKey = themeConfigs[0].key }) => {
+export const ThemeProvider = ({ children, defaultThemeKey = 'defaultTheme' }) => {
   const [currentThemeKey, setCurrentThemeKey] = useState(defaultThemeKey);
   const [mode, setMode] = useState("light");
 

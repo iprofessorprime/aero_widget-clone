@@ -1,22 +1,21 @@
 import React from "react";
+import styled from "styled-components";
 import { useTheme } from "./themeProvider";
+
+const Container = styled.div`
+  min-height: 100vh;
+  background-image: ${({ theme }) => (theme.backgroundImage ? `url(${theme.backgroundImage})` : "none")};
+  background-color: ${({ theme }) => theme.background};
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: ${({ theme }) => theme.text};
+`;
 
 const ThemedContainer = ({ children }) => {
   const { theme } = useTheme();
 
-  const containerStyle = {
-    minHeight: "100vh",
-    backgroundImage: theme.backgroundImage
-      ? `url(${theme.backgroundImage})`
-      : undefined,
-    backgroundColor: theme.background,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    color: theme.text,
-  };
-
-  return <div style={containerStyle}>{children}</div>;
+  return <Container theme={theme}>{children}</Container>;
 };
 
 export default ThemedContainer;
