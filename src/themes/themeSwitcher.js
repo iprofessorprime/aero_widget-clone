@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTheme } from "./themeProvider";
 import styled, { css, keyframes } from "styled-components";
+import MainCard from "../components/mainCard";
 
 const Container = styled.div`
-  background:green;
   margin: 0;
   padding: 0;
   display: flex;
@@ -14,32 +14,71 @@ const Container = styled.div`
   position: absolute;
   width: fit-content;
   height: fit-content;
-  right:0;
-  z-index:100;
+  right: 0;
+  z-index: 100;
+  top: 20%;
 `;
 
+const twinkle = keyframes`
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+`;
+
+const shining = keyframes`
+  0% {
+    left: -80px;
+  }
+  40% {
+    left: 150px;
+  }
+  100% {
+    left: 150px;
+  }
+`;
+
+const bubbleAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+    10% {
+    transform: scale(1.1);
+  }
+    30% {
+    transform: scale(1.12);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+    80% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+
 const Circle = styled.div`
-  // position: absolute;
   width: 100%;
   aspect-ratio: 1;
-  top: 5%;
   border-radius: 50%;
   transition: 1s;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ themeColor }) => themeColor || "transparent"};
   box-shadow: 0 0 10px ${({ isNight }) => (isNight ? "#f4f4f4" : "#ffd700")};
-  ${({ isNight }) =>
-    isNight
-      ? "right: 2.8%; left: unset;"
-      : "left: 2.8%; right: unset;"}
 `;
 
 const CloudBase = styled.div`
-  background-color: white;
-  border-radius: 50px;
-  position: absolute;
+  background-color: ${({ themeColor }) => themeColor || "white"};
+  border-radius: 30%;
+  position: relative;
   transition: 1s;
-  width: ${({ width }) => `${width * 0.3}px`};
-  height: ${({ height }) => `${height * 0.2}px`};
+  width: 100%;
+  height: 25%;
+  animation: ${bubbleAnimation} 2s 1;
 `;
 
 const CloudOne = styled(CloudBase)`
@@ -49,38 +88,29 @@ const CloudOne = styled(CloudBase)`
   &::before {
     content: "";
     position: absolute;
-    background-color: white;
+    background-color: ${({ themeColor }) => themeColor || "white"};
     border-radius: 50%;
-    width: 50%;
-    height: 170%;
-    bottom: -3%;
-    left: 0%;
+    width: 70%;
+    height: 264%;
+    bottom: 3%;
+    left: -17%;
   }
 
   &::after {
     content: "";
     position: absolute;
-    background-color: white;
+    background-color: ${({ themeColor }) => themeColor || "white"};
     border-radius: 50%;
-    width: 50%;
-    height: 164%;
-    top: -100%;
-    right: 5%;
-  }
-`;
-
-const twinkle = keyframes`
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
+    width: 88%;
+    height: 312%;
+    bottom: 0%;
+    right: -18%;
   }
 `;
 
 const Star = styled.div`
-  position: absolute;
-  background-color: white;
+  position: relative;
+  background-color: ${({ themeColor }) => themeColor || "white"};
   clip-path: polygon(
     50% 0%,
     61% 35%,
@@ -93,61 +123,104 @@ const Star = styled.div`
     2% 35%,
     39% 35%
   );
-  width: 3%;
-  height: 3%;
-  opacity: ${({ isVisible }) => (isVisible ? "1" : "0")};
+  width: 100%;
+  height: 100%;
   transition: 1s;
-  transform: ${({ isVisible }) => (isVisible ? "scale(1.5)" : "scale(1)")};
-  ${({ isVisible }) =>
-    isVisible &&
-    css`
-      animation: ${twinkle} 2s infinite;
-    `}
+  // animation: ${twinkle} 2s infinite;
 `;
 
 const SwitcherWrapper = styled.button`
-  background: ${({ theme }) => theme.primary.main};
-  // color: ${({ theme }) => theme.text};
+  background: transparent;
+  border: none;
+  border-radius: 50%;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
-  border:none;
-  padding: 0.5rem 1rem;
-  // font-size: 1rem;
-  // cursor: pointer;
-  // margin: 0.5rem;
-  &:hover {
-    background: ${({ theme }) => theme.primary.shades[300]};
-  }
+  padding: 0;
+  cursor: pointer;
+  margin: 0.5rem;
 `;
 
-const ThemeSwitcher = ({ themesData, type = "circle" }) => {
+const SettingButton = styled.button`
+  background: transparent;
+  color: ${({ themeColor }) => themeColor || "white"};
+  border: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rotate 2s linear infinite; 
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
+const Shine = styled.div`
+  position: absolute;
+  height: 250%;
+  width: 40px;
+  top: 0;
+  left: -60px;
+  background: linear-gradient(90deg, #ffffff00, #ffffff54, #ffffff00);
+  transform: rotate(45deg) translateY(-35%);
+  animation: ${shining} 2s ease ${({ repeat = "infinite" }) => repeat};
+`;
+const ThemeSwitcher = ({ themesData, type = "cloud" }) => {
+  const [openThemeOption, setOpenThemeOption] = useState(false);
   const { mode, theme, switchTheme } = useTheme();
   const isNight = mode === "dark";
-const themeUI=null
+
   const getThemeUI = (themeItem) => {
-    console.log(themeItem.theme[mode].primary.main,"themeItem",mode,themeItem)
+    const themeColor = themeItem.theme[mode]?.primary.main || "transparent";
+
     switch (type) {
       case "star":
-        return <Star isVisible={isNight} />;
+        return <Star isVisible={isNight} themeColor={themeColor} ><Shine /></Star>;
       case "cloud":
-        return <CloudOne top="30%" right="10%" />;
+        return <CloudOne top="30%" right="10%" themeColor={themeColor}><Shine /></CloudOne>;
       default:
-        return <Circle height={200} isNight={isNight} backgroundColor={themeItem.theme[mode].background} />;
+        return <Circle isNight={isNight} themeColor={themeColor} ><Shine /></Circle>;
     }
   };
 
+  const handleOpenSetting = () => {
+    setOpenThemeOption(!openThemeOption);
+  };
+
+  const cardStyle = {
+    position: "absolute",
+    right: "100%",
+    top: 0,
+    marginTop: 0,
+    height: 'fit-content',
+    width: 'fit-content',
+    padding: '0 10px'
+  };
+
   return (
-    <Container isNight={isNight}>
-      {themesData.map((themeItem, index) => (
-        <SwitcherWrapper
-          key={index}
-          onClick={() => switchTheme(themeItem.key)}
-          theme={theme}
-        >
-          {getThemeUI(themeItem)}
-        </SwitcherWrapper>
-      ))}
+    <Container>
+      <SettingButton onClick={handleOpenSetting}>⚙️</SettingButton>
+      {openThemeOption && (
+        <MainCard style={cardStyle}>
+          <Shine repeat="2" />
+          {themesData.map((themeItem, index) => (
+            <SwitcherWrapper
+              key={index}
+              onClick={() => {
+                switchTheme(themeItem.key);
+                handleOpenSetting();
+              }}
+            >
+              {getThemeUI(themeItem)}
+            </SwitcherWrapper>
+          ))}
+        </MainCard>
+      )}
     </Container>
   );
 };
