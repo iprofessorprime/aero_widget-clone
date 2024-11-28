@@ -20,7 +20,7 @@ export const SideMenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  h3{
+  h4{
   font-size: 10px;
 }
 `;
@@ -28,11 +28,11 @@ export const SideMenuWrapper = styled.div`
 export const MenuItem = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px;
+  justify-content: space-between;
+  padding: 5px 10px;
   margin: 5px 0;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   text-align: center;
   transition: background-color 0.3s ease;
@@ -45,27 +45,11 @@ export const MenuItem = styled.div`
 
 
 export const Button = styled.button`
-  padding: 10px 20px;
-  margin: 10px;
+  padding: ${({ icon }) => icon ? '5px' : '10px 20px'};
   font-size: 10px;
   cursor: pointer;
   border: none;
-  border-radius: 5px;
-  background-color: ${({ color }) => color ? color : '#007bff'};
-  color: #fff;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: ${({ color }) => color ? color + 50 : '#007bff'};
-  }
-`;
-
-export const PlayButton = styled.button`
-  padding: 5px;
-  font-size: 10px;
-  cursor: pointer;
-  border: none;
-  border-radius: 50%;
+  border-radius:${({ icon }) => icon ? '50%' : '5px'} ;
   background-color: ${({ color }) => color ? color : '#007bff'};
   color: #fff;
   transition: background-color 0.3s ease;
@@ -103,6 +87,14 @@ export const AudioItemWrapper = styled.div`
   justify-content: center;
 `;
 
+export const AudioTrack = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const VolumeTrack = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export const AudioItem = styled.div`
   display: flex;
   align-items: center;

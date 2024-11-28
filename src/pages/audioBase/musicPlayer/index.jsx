@@ -5,17 +5,19 @@ import {
   AudioList,
   AudioListWrapper,
   AudioPageWrapper,
+  AudioTrack,
   Button,
-  Input,
-  MenuItem,
-  PlayButton,
-  SideMenuWrapper,
+  VolumeTrack,
 } from "./audioStyles";
 import defaultAudio from "./assets/audioFiles/ShreeKrishnaGovindHareMurari.mp3";
-import { pauseIcon, playIcon } from "./assets";
+import { pauseIcon, playIcon } from "./assets/indes";
+import AudioUpload from "./audioUploader";
+import MusicPlayerHeader from "./header";
+import MusicPlayerSideMenu from "./sideMenu";
 
 const MusicPlayer = () => {
-  const [selectedFiles, setSelectedFiles] = useState(0);
+  const [selectedFilesIndex, setSelectedFilesIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [audioFiles, setAudioFiles] = useState([
     {
       url: defaultAudio,
@@ -44,7 +46,7 @@ const MusicPlayer = () => {
   useEffect(() => {
     if (!audioContextRef.current) {
       audioContextRef.current = new (window.AudioContext ||
-        window.webkitAudioContext)();
+        window.AudioContext)();
     }
 
     audioFiles.forEach((audioFile, index) => {
@@ -132,72 +134,68 @@ const MusicPlayer = () => {
       }
     }
   };
+
   useEffect(() => {
-    togglePlayPause(selectedFiles);
-  }, [selectedFiles]);
+    togglePlayPause(selectedFilesIndex);
+  }, [selectedFilesIndex]);
+
   const playNext = () => {
-    if (
-      selectedFiles !== null &&
-      selectedFiles < audioFiles.length - 1
-    ) {
-      setSelectedFiles(selectedFiles + 1);
+    if (selectedFilesIndex < audioFiles.length - 1) {
+      setSelectedFilesIndex((prev) => prev + 1);
     }
   };
 
   const playPrevious = () => {
-    if (
-      selectedFiles !== null &&
-      selectedFiles > 0
-    ) {
-      setSelectedFiles(selectedFiles - 1);
+    if (selectedFilesIndex > 0) {
+      setSelectedFilesIndex((prev) => prev - 1);
     }
+  };
+
+  const onSelectAudio = (index) => {
+    setSelectedFilesIndex(index);
+    togglePlayPause(index);
+  };
+  const deleteAudio = (index, event) => {
+    event.stopPropagation();
+    setAudioFiles((files) => files.filter((_, i) => i !== index));
+    if (selectedFilesIndex === index) {
+      setSelectedFilesIndex((prev) => (prev > 0 ? prev - 1 : 0));
+    }
+  };
+  const handleFileUpload = (file) => {
+    const audioUrl = URL.createObjectURL(file);
+    setAudioFiles((prevFiles) => [
+      ...prevFiles,
+      {
+        url: audioUrl,
+        blob: file,
+        volume: 1,
+        isPlaying: false,
+        name: file.name,
+        currentTime: 0,
+        duration: 0,
+      },
+    ]);
+  };
+  const handleDownload = (fileUrl, fileName) => {
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = fileName;
+    link.click();
   };
   return (
     <AudioPageWrapper>
-      <SideMenuWrapper>
-        <h4>Audio Files</h4>
-        {audioFiles.map((audioFile, index) => (
-          <MenuItem key={audioFile.url} onClick={() => setSelectedFiles(index)}>
-            {audioFile.name}
-            <Button
-              color="red"
-              onClick={() =>
-                setAudioFiles((files) => files.filter((_, i) => i !== index))
-              }
-            >
-              Delete
-            </Button>
-          </MenuItem>
-        ))}
-      </SideMenuWrapper>
+      <MusicPlayerSideMenu
+        audioFiles={audioFiles}
+        onSelectAudio={onSelectAudio}
+        deleteAudio={deleteAudio}
+      />
       <AudioListWrapper>
-        <h4>Audio</h4>
-        <Input
-          type="file"
-          accept="audio/*"
-          onChange={(event) => {
-            const file = event.target.files[0];
-            if (file) {
-              const audioUrl = URL.createObjectURL(file);
-              setAudioFiles((prevFiles) => [
-                ...prevFiles,
-                {
-                  url: audioUrl,
-                  blob: file,
-                  volume: 1,
-                  isPlaying: false,
-                  name: file.name,
-                  currentTime: 0,
-                  duration: 0,
-                },
-              ]);
-            }
-          }}
-        />
+        <MusicPlayerHeader setIsModalOpen={setIsModalOpen} />
         <AudioList>
           {audioFiles.map((audioFile, index) => (
             <AudioItemWrapper key={index}>
-              {selectedFiles == index && (
+              {selectedFilesIndex == index && (
                 <>
                   <div>
                     <audio
@@ -224,12 +222,17 @@ const MusicPlayer = () => {
                   </div>
                   <div style={{ fontSize: "10px" }}>{audioFile.name}</div>
                   <AudioItem>
-                  <PlayButton onClick={playPrevious}>⏮️</PlayButton> {/* Previous emoji */}
-                    <PlayButton onClick={() => togglePlayPause(index)}>
-                    {audioFile.isPlaying ? "⏸️" : "▶️"}
-                    </PlayButton>
-                  <PlayButton onClick={playNext}>⏭️</PlayButton> 
-                    <div>
+                    <Button icon onClick={playPrevious}>
+                      ⏮️
+                    </Button>{" "}
+                    {/* Previous emoji */}
+                    <Button icon onClick={() => togglePlayPause(index)}>
+                      {audioFile.isPlaying ? "⏸️" : "▶️"}
+                    </Button>
+                    <Button icon onClick={playNext}>
+                      ⏭️
+                    </Button>
+                    <AudioTrack>
                       <span style={{ fontSize: "10px" }}>
                         {formatTime(audioFile.currentTime)} /{" "}
                         {formatTime(audioFile.duration)}
@@ -254,8 +257,8 @@ const MusicPlayer = () => {
                           }
                         }}
                       />
-                    </div>
-                    <label style={{ fontSize: "10px" }}>
+                    </AudioTrack>
+                    <VolumeTrack style={{ fontSize: "10px" }}>
                       Volume:
                       <input
                         type="range"
@@ -265,7 +268,10 @@ const MusicPlayer = () => {
                         value={audioFile.volume}
                         onChange={(e) => handleVolumeChange(index, e)}
                       />
-                    </label>
+                    </VolumeTrack>
+                    <Button icon onClick={()=>handleDownload(audioFile.url, audioFile.name)}>
+                      📥
+                    </Button>
                   </AudioItem>
                 </>
               )}
@@ -273,6 +279,11 @@ const MusicPlayer = () => {
           ))}
         </AudioList>
       </AudioListWrapper>
+      <AudioUpload
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onFileUpload={handleFileUpload}
+      />
     </AudioPageWrapper>
   );
 };

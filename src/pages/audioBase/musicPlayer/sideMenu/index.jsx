@@ -1,17 +1,24 @@
 import React from 'react';
-import { MenuItem, SideMenuWrapper } from '../audioStyles';
+import { Button, MenuItem, SideMenuWrapper } from '../audioStyles';
 
-const AudioSideMenu = ({ audioFiles, onAudioSelect }) => {
+const MusicPlayerSideMenu = ({ audioFiles, onSelectAudio, deleteAudio }) => {
   return (
     <SideMenuWrapper>
-      <h4>Audio Files</h4>
-      {audioFiles.map((audioFile, index) => (
-        <MenuItem key={audioFile.url} onClick={() => onAudioSelect(index)}>
-          {audioFile.name}
-        </MenuItem>
-      ))}
-    </SideMenuWrapper>
+        <h4>Audio Files</h4>
+        {audioFiles.map((audioFile, index) => (
+          <MenuItem key={audioFile.url} onClick={() => onSelectAudio(index)}>
+            {audioFile.name}
+            <Button
+              icon
+              color="red"
+              onClick={(e) => deleteAudio(index, e)}
+            >
+              🗑️
+            </Button>
+          </MenuItem>
+        ))}
+      </SideMenuWrapper>
   );
 };
 
-export default AudioSideMenu;
+export default MusicPlayerSideMenu;
