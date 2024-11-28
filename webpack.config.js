@@ -40,6 +40,10 @@ module.exports = (_, argv) => ({
   module: {
     rules: [
       {
+        test: /\.(mp3)$/,
+        use: 'file-loader', 
+      },
+      {
         test: /\.m?js/,
         type: "javascript/auto",
         resolve: {
