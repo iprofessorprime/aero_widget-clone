@@ -140,6 +140,10 @@ const DashboardRoutes = {
       element: <ToggleSwitchPage />
     },
     {
+      id: "audio",
+      title: "Audio",
+      type: "item",
+      path: 'audio',
       path: 'audio',
       element: <AudioPage />
     },
