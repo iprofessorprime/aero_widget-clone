@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { theme } from "../themes/themeProvider";
+// import { theme } from "../themes";
 
 export const SidebarWrapper = styled.div`
   margin: 0;
@@ -6,6 +8,7 @@ export const SidebarWrapper = styled.div`
   overflow: hidden;
   font-family: "Poppins", sans-serif;
   transition: 0.5s ease-in-out;
+  background-color: ${({ theme }) => theme.primary.main}50;
 
   ::-webkit-scrollbar {
     width: 0px;
@@ -150,14 +153,14 @@ export const Menu = styled.div`
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
-  background-color: ${({ activeLink }) => (activeLink ? "white" : "transparent")};
+  background-color: ${({ theme, activeLink }) => (activeLink ? theme.primary.main : "transparent")};
   box-shadow: ${({ activeLink }) => (activeLink ? "1px 1px 20px white" : "none")};
-  color: white;
+  color: ${({ theme }) => theme.text};
 
   &:hover {
-    background-color: white;
+    background-color: ${({ theme }) => theme.primary.shades[300]};
     box-shadow: 1px 1px 20px white;
-    color: black;
+    color: ${({ theme }) => theme.text};
   }
 
   .menu-img {

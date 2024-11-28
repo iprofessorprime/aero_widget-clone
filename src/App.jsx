@@ -4,13 +4,14 @@ import "./index.css";
 import AppRouter from "./routes";
 import { BrowserRouter } from "react-router-dom";
 import WelcomePage from "./pages/welcome";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "./themes";
+import SpinnerCubeLoader from "./pages/loaders/spinnerCubeLoader";
 
 const getLoggedUserData = async () => {
-  return new Promise(resolve =>
-    setTimeout(() => resolve({ themeKey: "redTheme" }), 200)
+  return new Promise((resolve) =>
+    setTimeout(() => resolve({ themeKey: "defaultTheme" }), 200)
   );
 };
 const App = () => {
@@ -32,23 +33,29 @@ const App = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const user = await getLoggedUserData();
-      setUserThemeKey(user?.themeKey || "defaultTheme"); 
+      try {
+        const user = await getLoggedUserData();
+        setUserThemeKey(user?.themeKey);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setUserThemeKey("defaultTheme");
+      }
     };
 
     fetchUserData();
   }, []);
+
   if (showWelcome) {
     return <WelcomePage />;
   }
   
   if (userThemeKey === null) {
-    return <div>Loading...</div>;
+    return <div><SpinnerCubeLoader/></div>;
   }
   return (
-    <ThemeProvider  defaultThemeKey={userThemeKey}>
+    <ThemeProvider defaultThemeKey={userThemeKey}>
       <ToastContainer position="top-right" autoClose={3000} />
-      <div className='container'>
+      <div className="container">
         <BrowserRouter>
           <AppRouter />
         </BrowserRouter>
@@ -57,6 +64,7 @@ const App = () => {
   );
 };
 
+// Render React App
 const rootElement = document.getElementById("app");
 if (!rootElement) throw new Error("Failed to find the root element");
 

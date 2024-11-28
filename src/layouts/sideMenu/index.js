@@ -5,12 +5,14 @@ import DashboardRoutes from "../../routes/dashboardRoutes";
 import MenuToggle from "./menuComponent/menuToggle";
 import { GroupTitle, Menu, MenuContainer, Menus } from "../sideMenuStyles";
 import DropdownMenu from "./components/dropdown";
+import { useTheme } from "../../themes";
 const renderMenuItems = (
   items,
   drawerOpen,
   expanded,
   handleChange,
-  activeLink
+  activeLink,
+  theme
 ) => {
   return items.map((item) => {
     switch (item.type) {
@@ -25,7 +27,8 @@ const renderMenuItems = (
                   drawerOpen,
                   expanded,
                   handleChange,
-                  activeLink
+                  activeLink,
+                  theme
                 )}
               </MenuContainer>
             )}
@@ -34,7 +37,7 @@ const renderMenuItems = (
       case "item":
         return (
           <a href={item.path} key={item.id}>
-            <Menu activeLink={activeLink === item.path}>
+            <Menu theme={theme} activeLink={activeLink === item.path}>
               <div className="menu-img">
               {/* <img width="12" height="12" src={item?.imgSrc} alt={item.alt || "icon"} /> */}
                 <svg
@@ -71,7 +74,8 @@ const renderMenuItems = (
                 drawerOpen,
                 expanded,
                 handleChange,
-                activeLink
+                activeLink,
+                theme
               )}
             </MenuToggle>
           </MenuContainer>
@@ -84,7 +88,8 @@ const renderMenuItems = (
               drawerOpen,
               expanded,
               handleChange,
-              activeLink
+              activeLink,
+              theme
             )}
           </DropdownMenu>
         );
@@ -98,7 +103,7 @@ const SideMenu = ({ drawerOpen }) => {
   const [expanded, setExpanded] = useState(false);
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
-
+  const {theme} = useTheme()
   useEffect(() => {
     setActiveLink(location.pathname);
   }, [location]);
@@ -115,7 +120,8 @@ const SideMenu = ({ drawerOpen }) => {
           drawerOpen,
           expanded,
           handleChange,
-          activeLink
+          activeLink,
+          theme
         )}
       </MenuContainer>
     </Menus>

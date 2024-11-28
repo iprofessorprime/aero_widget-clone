@@ -21,13 +21,13 @@ const baseThemeConfigs = [
           },
         },
         secondary: {
-          main: '#D6ECFD',
+          main: '#FFB6C1', // New secondary main color (light pink)
           shades: {
-            100: '#e4f3fe',
-            300: '#b0d8f7',
-            500: '#D6ECFD',
-            700: '#a0c1e3',
-            900: '#7a9ecf',
+            100: '#FFD6E3',
+            300: '#FF89A1',
+            500: '#FFB6C1',
+            700: '#D6869E',
+            900: '#A75A7D',
           },
         },
       },
@@ -46,19 +46,18 @@ const baseThemeConfigs = [
           },
         },
         secondary: {
-          main: '#345069',
+          main: '#FFA07A', // New secondary main color (light salmon)
           shades: {
-            100: '#5b7a8e',
-            300: '#456277',
-            500: '#345069',
-            700: '#24374a',
-            900: '#162635',
+            100: '#FFB89E',
+            300: '#FF8F66',
+            500: '#FFA07A',
+            700: '#D67D56',
+            900: '#A65F41',
           },
         },
       },
     },
-
-  },
+  },  
   {
     name: 'Red Theme',
     key: 'redTheme',

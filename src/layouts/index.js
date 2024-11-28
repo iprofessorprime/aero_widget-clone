@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Box, Divider, IconButton, Drawer as MuiDrawer } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import { useTheme } from '@mui/material/styles';
 import SideMenu from './sideMenu';
 import Header from './header';
 import useResponsive from "../utils/useResponsive";
 import './sideMenu.css'
 import { SidebarWrapper, Headerw, Profile, ProfilePic, HeaderButton, ProfileName } from "./sideMenuStyles";
+import { useTheme } from "../themes";
 
 const Layout = () => {
-  const theme = useTheme();
+  const {theme} = useTheme();
   const [drawerOpen, setDrawerOpen] = useState(true);
   const { isXs, isSm, isMd, isLg } = useResponsive()
 
@@ -30,7 +30,7 @@ const Layout = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       {/* <Header /> */}
-      <SidebarWrapper style={{ width: drawerOpen ? 240 : 60 }}>
+      <SidebarWrapper theme={theme} style={{ width: drawerOpen ? 240 : 60 }}>
         <div id="sidenav" className={`darksoul-sidenav ${drawerOpen ? "open" : "closed"}`}>
           <Headerw className="header">
             <Profile className="profile">
