@@ -2,7 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import PortfolioSkeleton from "../skeleton";
 
-// Styled components for image and icon
+const ImageContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 const ImageWrapper = styled.div`
   width: 50px;
   height: 50px;
@@ -69,15 +76,18 @@ const ImageIconView = ({
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <ImageContainer>
       {type === "image" ? (
         <ImageWrapper>{Content()}</ImageWrapper>
       ) : (
         <IconWrapper>{Content()}</IconWrapper>
       )}
-      {title && <PortfolioSkeleton width="70%" />}
-      {title && !isLoading && <ImageTitle>{title}</ImageTitle>}
-    </div>
+      {title && isLoading ? (
+        <PortfolioSkeleton width="70%" />
+      ) : (
+        <ImageTitle>{title}</ImageTitle>
+      )}
+    </ImageContainer>
   );
 };
 

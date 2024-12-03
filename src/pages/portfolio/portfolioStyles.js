@@ -5,7 +5,7 @@ export const Container = styled.div`
   font-family: 'Arial, sans-serif';
   background-color: #121212;
   color: #FFFFFF;
-  // padding: 20px;
+  padding: 20px;
   text-align: center;
   overflow: hidden;
   overflow-y: scroll;

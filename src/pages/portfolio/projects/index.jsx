@@ -12,11 +12,9 @@ const ProjectSection = ({ projectTitle = "12", isLoading = true }) => {
         <>
           <SectionTitle>Projects</SectionTitle>
           <ProjectsGrid>
-            <MainCard border shadow>
               <ProjectCard>
                 <p>Project {projectTitle} 1</p>
               </ProjectCard>
-            </MainCard>
           </ProjectsGrid>
         </>
       )}
