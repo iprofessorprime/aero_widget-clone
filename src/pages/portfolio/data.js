@@ -5,6 +5,20 @@ const portfolioData = {
     subtitle: "A showcase of my work and skills",
     description: "I am a React developer passionate about building efficient and scalable applications.",
   },
+  objective: {
+    title: "Objectives",
+    description: "I am a React developer passionate about building efficient and scalable applications. I am a React developer passionate about building efficient and scalable applications. I am a React developer passionate about building efficient and scalable applications. I am a React developer passionate about building efficient and scalable applications.",
+  },
+  statics: {
+    title: "statics",
+    description: "I am a React developer passionate about building efficient and scalable applications. I am a React developer passionate about building efficient and scalable applications.",
+    skills: [
+      { name: "JavaScript", percentage: 90 },
+      { name: "React", percentage: 85 },
+      { name: "CSS", percentage: 70 },
+      { name: "Node.js", percentage: 75 },
+    ],
+  },
   images: [
     {
       id: 1,
@@ -108,6 +122,6 @@ export const fetchPortfolioData = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(portfolioData);
-    }, 2000);
+    }, 200);
   });
 };

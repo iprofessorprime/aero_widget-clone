@@ -8,18 +8,23 @@ import { Grid2 as Grid } from "@mui/material";
 import MainCard from "../../components/mainCard";
 import PortfolioHeader from "./header";
 import { ImageIconView } from "./components";
-import { fetchPortfolioData } from './data'
+import { fetchPortfolioData } from "./data";
+import ObjectiveSection from "./objective";
+import StaticsSection from "./statics";
 const Portfolio = () => {
   const [portfolioData, setPortfolioData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchPortfolioData()
-    .then((data) => {
+    fetchPortfolioData().then((data) => {
+      console.log(data);
       setPortfolioData(data);
       setIsLoading(false);
     });
   }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <Container>
       <PortfolioHeader />
@@ -29,14 +34,14 @@ const Portfolio = () => {
             <Grid container spacing={2}>
               <Grid size={12}>
                 <MainCard border style={{ height: "300px" }}>
-                  <HeroSection isLoading={isLoading} />
+                  <HeroSection data={portfolioData?.hero} isLoading={true} />
                 </MainCard>
               </Grid>
               {[1, 2, 3].map((item) => (
                 <Grid size={4}>
                   <MainCard height={"100%"}>
                     <ImageIconView
-                     isLoading={isLoading}
+                      isLoading={true}
                       type="image"
                       src="https://via.placeholder.com/100"
                       title="test"
@@ -51,7 +56,7 @@ const Portfolio = () => {
                       <Grid size={6}>
                         <MainCard border>
                           <ImageIconView
-                           isLoading={isLoading}
+                            isLoading={true}
                             type="image"
                             src="https://via.placeholder.com/100"
                           />
@@ -67,18 +72,27 @@ const Portfolio = () => {
         <Grid size={{ xs: 12, md: 8 }}>
           <div>
             <Grid container spacing={2}>
-              {[1, 2].map((item) => (
-                <Grid size={{ xs: 6, md: 6 }}>
-                  <MainCard border>
-                    <SkillsSection isLoading={isLoading} />
-                  </MainCard>
-                </Grid>
-              ))}
+              <Grid size={{ xs: 6, md: 6 }}>
+                <MainCard height={'100%'} border>
+                  <ObjectiveSection
+                    isLoading={isLoading}
+                    data={portfolioData?.objective}
+                  />
+                </MainCard>
+              </Grid>
+              <Grid size={{ xs: 6, md: 6 }}>
+                <MainCard height={'100%'} border>
+                  <StaticsSection
+                    isLoading={isLoading}
+                    data={portfolioData?.statics}
+                  />
+                </MainCard>
+              </Grid>
               {[1, 2, 3, 4].map((item) => (
                 <Grid size={{ xs: 6, md: 3 }}>
                   <MainCard border>
                     <ImageIconView
-                     isLoading={isLoading}
+                      isLoading={true}
                       type="image"
                       src="https://via.placeholder.com/100"
                       title={"test"}
@@ -94,7 +108,7 @@ const Portfolio = () => {
                     {[1, 2, 3, 4].map((item) => (
                       <Grid size={{ xs: 6, md: 3 }}>
                         <MainCard border>
-                          <ProjectSection isLoading={isLoading} />
+                          <ProjectSection isLoading={true} />
                         </MainCard>
                       </Grid>
                     ))}
@@ -106,8 +120,8 @@ const Portfolio = () => {
         </Grid>
       </Grid>
 
-      <SkillsSection isLoading={isLoading} />
-      <ContactSection isLoading={isLoading} />
+      <SkillsSection isLoading={true} />
+      <ContactSection isLoading={true} />
     </Container>
   );
 };
