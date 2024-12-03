@@ -1,7 +1,7 @@
 import MinimalLayout from '../layouts/minimalLayout';
 import WelcomePage from '../pages/welcome';
 import Layout from '../layouts';
-
+import Portfolio from '../pages/portfolio';
 
 const PagesRoutes = {
   path: '/',
@@ -14,6 +14,10 @@ const PagesRoutes = {
     {
       path: 'dashboard',
       element: <Layout />
+    },
+    {
+      path: 'portfolio',
+      element: <Portfolio />
     },
   ]
 };

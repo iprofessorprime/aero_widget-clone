@@ -35,7 +35,7 @@ export const ThemeProvider = ({ children, defaultThemeKey = 'defaultTheme' }) =>
       }}
     >
       <ThemedContainer>
-      <ThemeSwitcher themesData={themeConfigs} />
+      {/* <ThemeSwitcher themesData={themeConfigs} /> */}
       {children}
       </ThemedContainer>
     </ThemeContext.Provider>
