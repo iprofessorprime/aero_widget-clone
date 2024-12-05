@@ -9,7 +9,7 @@ import {
   Button,
   VolumeTrack,
 } from "./audioStyles";
-import defaultAudio from "./assets/audioFiles/ShreeKrishnaGovindHareMurari.mp3";
+import defaultAudio from "./assets/audiofiles/ShreeKrishnaGovindHareMurari.mp3";
 import { pauseIcon, playIcon } from "./assets/indes";
 import AudioUpload from "./audioUploader";
 import MusicPlayerHeader from "./header";
@@ -199,6 +199,7 @@ const MusicPlayer = () => {
                 <>
                   <div>
                     <audio
+                    style={{display:'none'}}
                       ref={(ref) => {
                         audioRefs.current[index] = ref;
                         if (ref) {
