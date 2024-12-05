@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import io from 'socket.io-client';
-const socket = io('http://192.168.0.201:4000'); 
+const socket = io('http://192.168.1.118:4000'); 
 
 const AudioBroadcastReciever = () => {
   const audioRef = useRef(null);

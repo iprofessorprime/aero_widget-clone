@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import { Box } from "@mui/material";
 import TranscriptionDisplay from "./TranscriptionDisplay";
+import { BroadcastButton } from "./styles";
 
 const socket = io("http://192.168.1.118:4000");
 
@@ -100,7 +101,7 @@ const LiveAudioBroadcast = () => {
           justifyContent: "space-around",
         }}
       >
-        <button
+        <BroadcastButton
           onClick={() => {
             if (mediaRecorder && mediaRecorder.state === "recording") {
               stopBroadcast();
@@ -118,7 +119,7 @@ const LiveAudioBroadcast = () => {
           className="audio-broadcast-button"
         >
           {mediaRecorder && mediaRecorder.state === "recording" ? "🔴" : "🟢"}
-        </button>
+        </BroadcastButton>
       </Box>
       <audio id="audioPlayer" controls></audio>
       <TranscriptionDisplay transcription={transcription} />

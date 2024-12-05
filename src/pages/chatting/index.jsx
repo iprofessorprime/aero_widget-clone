@@ -1,14 +1,20 @@
-import React from 'react'
-import MobileAudioReceiver from './mobileAudioReciver'
-import MobileAudioSender from './mobileAudioSender'
+import React from "react";
+import Messanger from "./messanger";
+import { Grid2 as Grid } from "@mui/material";
 
-const Chatting = () => {
+const MessangerPage = () => {
   return (
     <div>
-      <MobileAudioReceiver/>
-      <MobileAudioSender/>
+      <Grid container spacing={2}>
+        <Grid size={6}>
+          <Messanger />
+        </Grid>
+        <Grid size={6}>
+          <Messanger />
+        </Grid>
+      </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default Chatting
+export default MessangerPage;

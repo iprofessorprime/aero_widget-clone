@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 
-const socket = io("http://192.168.0.201:4000");
+const socket = io("http://192.168.1.118:4000");
 
 const Messanger = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [userId, setUserId] = useState(null); 
-  const messageContainerRef = useRef(null); 
+  const messageContainerRef = useRef(null);
 
   useEffect(() => {
     setUserId(Date.now().toString());
@@ -46,16 +46,28 @@ const Messanger = () => {
   };
 
   return (
-    <div>
+    <div style={{
+      marginTop: "20px",
+      height: "200px",
+      overflowY: "scroll",
+      borderRadius: "10px",
+      border: "1px solid grey",
+      padding: "20px",
+      display: 'flex',
+      flexDirection:'column',
+      justifyContent: 'space-between',
+      alignItems:'center'
+    }}>
       <div
         ref={messageContainerRef}
         style={{
           marginTop: "20px",
-          maxHeight: "200px",
+          height: "200px",
           overflowY: "scroll",
           borderRadius: "10px",
-          border: "1px solid grey",
           padding: "10px",
+          backgroundColor:'red',
+          width:'100%'
         }}
       >
         {messages.map((msg) => (
@@ -93,11 +105,10 @@ const Messanger = () => {
       <div
         style={{
           fontFamily: "Arial, sans-serif",
-          padding: "20px",
-          maxWidth: "600px",
-          margin: "auto",
           display: "flex",
           alignItems: "center",
+          justifyContent:'center',
+          width:'100%'
         }}
       >
         <input
@@ -122,6 +133,7 @@ const Messanger = () => {
             cursor: "pointer",
             marginLeft: "10px",
           }}
+          type="submit"
         >
           Send
         </button>

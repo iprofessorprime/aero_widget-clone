@@ -11,6 +11,11 @@ import CarRacingGame from '../pages/games/carRacing';
 import ChatsUI from '../pages/chatsUI';
 import ToggleSwitchPage from '../pages/toggleSwitch';
 import AudioPage from '../pages/audioBase';
+import MusicPlayer from '../pages/audioBase/musicPlayer';
+import AudioListPage from '../pages/audioBase/audioList';
+import MessangerPage from '../pages/chatting';
+import MobileAudioReceiver from '../pages/audioBase/broadcast/mobileAudioReciver';
+import MobileAudioSender from '../pages/audioBase/broadcast/mobileAudioSender';
 
 const DashboardRoutes = {
   id: "group-management",
@@ -99,36 +104,6 @@ const DashboardRoutes = {
       ]
     },
     {
-      id: "games",
-      title: "Games",
-      type: "menu",
-      path: 'games',
-      element: <Games />,
-      children: [
-        {
-          id: "games-list",
-          title: "Games List",
-          type: "item",
-          path: '',
-          element: <GamesList />
-        },
-        {
-          id: "typing-game",
-          title: "Typing Game",
-          type: "item",
-          path: 'typing-game',
-          element: <TypingGame />
-        },
-        {
-          id: "car-racing",
-          title: "Car Racing",
-          type: "item",
-          path: 'car-racing',
-          element: <CarRacingGame />
-        },
-      ]
-    },
-    {
       id: "chats",
       title: "Chats UI",
       type: "item",
@@ -136,16 +111,47 @@ const DashboardRoutes = {
       element: <ChatsUI />
     },
     {
-      path: 'toggle-switch',
-      element: <ToggleSwitchPage />
+      id: "messanger",
+      title: "Messanger",
+      type: "item",
+      path: 'messanger',
+      element: <MessangerPage />
     },
     {
       id: "audio",
       title: "Audio",
       type: "item",
       path: 'audio',
-      path: 'audio',
-      element: <AudioPage />
+      element: <AudioPage />,
+      children: [
+        {
+          id: "audio-music-player",
+          title: "Music Player",
+          path: '',
+          element: <AudioListPage />
+        },
+        {
+          id: "audio-music-player",
+          title: "Music Player",
+          type: "item",
+          path: 'music-player',
+          element: <MusicPlayer />
+        },
+        {
+          id: "audio-audio-reciever",
+          title: "audio-reciever",
+          type: "item",
+          path: 'audio-reciever',
+          element: <MobileAudioReceiver />
+        },
+        {
+          id: "audio-audio-sender",
+          title: "audio-sender",
+          type: "item",
+          path: 'audio-sender',
+          element: <MobileAudioSender />
+        },
+      ],
     },
   ]
 };
