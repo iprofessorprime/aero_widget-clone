@@ -49,14 +49,15 @@ const Messanger = () => {
     <div style={{
       marginTop: "20px",
       height: "200px",
-      overflowY: "scroll",
+      overflow: "hidden",
       borderRadius: "10px",
       border: "1px solid grey",
       padding: "20px",
       display: 'flex',
       flexDirection:'column',
       justifyContent: 'space-between',
-      alignItems:'center'
+      alignItems:'center',
+      backgroundColor:'#00000080',
     }}>
       <div
         ref={messageContainerRef}
@@ -66,7 +67,6 @@ const Messanger = () => {
           overflowY: "scroll",
           borderRadius: "10px",
           padding: "10px",
-          backgroundColor:'red',
           width:'100%'
         }}
       >
