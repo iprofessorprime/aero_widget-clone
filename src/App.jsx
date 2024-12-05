@@ -44,16 +44,15 @@ const App = () => {
 
     fetchUserData();
   }, []);
-
-  if (showWelcome) {
-    return <WelcomePage />;
-  }
+  // if (showWelcome) {
+  //   return <WelcomePage />;
+  // }
   
-  if (userThemeKey === null) {
-    return <div><SpinnerCubeLoader/></div>;
-  }
+  // if (userThemeKey === null) {
+  //   return <div>Loading...</div>;
+  // }
   return (
-    <ThemeProvider defaultThemeKey={userThemeKey}>
+    <ThemeProvider  defaultThemeKey={userThemeKey|| "defaultTheme"}>
       <ToastContainer position="top-right" autoClose={3000} />
       <div className="container">
         <BrowserRouter>

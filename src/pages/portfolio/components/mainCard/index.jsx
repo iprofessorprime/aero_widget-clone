@@ -1,7 +1,7 @@
 import React from "react";
 import { MainCardTitle, MainCardWrapper } from "./mainCardStyles";
 
-const MainCard = ({ data = {}, onClick, children, style, border = false, shadow = false, height }) => {
+const PortfolioCards = ({ data = {}, onClick, children, style, border = false, shadow = false, height }) => {
   return (
     <MainCardWrapper
       border={border}
@@ -17,4 +17,4 @@ const MainCard = ({ data = {}, onClick, children, style, border = false, shadow 
   );
 };
 
-export default MainCard;
+export default PortfolioCards;

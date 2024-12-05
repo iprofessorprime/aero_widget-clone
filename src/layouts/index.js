@@ -6,7 +6,8 @@ import Header from './header';
 import useResponsive from "../utils/useResponsive";
 import './sideMenu.css'
 import { SidebarWrapper, Headerw, Profile, ProfilePic, HeaderButton, ProfileName } from "./sideMenuStyles";
-import { useTheme } from "../themes";
+import { ThemeSwitcher } from "../themes";
+import { themeConfigs } from "../themes/themeConfigs";
 
 const Layout = () => {
   const {theme} = useTheme();
@@ -62,6 +63,7 @@ const Layout = () => {
       </SidebarWrapper>
       <Box sx={{width:'100%'}}>
         <Header />
+        <ThemeSwitcher themesData={themeConfigs} />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Outlet />
         </Box>
