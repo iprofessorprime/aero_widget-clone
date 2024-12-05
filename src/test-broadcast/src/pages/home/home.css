@@ -1,0 +1,36 @@
+.home-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.route-card-link {
+  text-decoration: none; /* Remove underline from link */
+}
+
+.route-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.route-card:hover {
+  transform: scale(1.05);
+}
+
+.route-description {
+  margin-top: 10px;
+  color: #007bff;
+  font-size: 14px;
+}
