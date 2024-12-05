@@ -6,7 +6,7 @@ import Header from './header';
 import useResponsive from "../utils/useResponsive";
 import './sideMenu.css'
 import { SidebarWrapper, Headerw, Profile, ProfilePic, HeaderButton, ProfileName } from "./sideMenuStyles";
-import { ThemeSwitcher } from "../themes";
+import { ThemeSwitcher, useTheme } from "../themes";
 import { themeConfigs } from "../themes/themeConfigs";
 
 const Layout = () => {
