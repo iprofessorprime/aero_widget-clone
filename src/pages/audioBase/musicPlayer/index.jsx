@@ -9,7 +9,7 @@ import {
   Button,
   VolumeTrack,
 } from "./audioStyles";
-import defaultAudio from "./assets/audiofiles/ShreeKrishnaGovindHareMurari.mp3";
+import defaultAudio from "./assets/audioFiles/shreeKrishnaGovind.mp3";
 import { pauseIcon, playIcon } from "./assets/indes";
 import AudioUpload from "./audioUploader";
 import MusicPlayerHeader from "./header";

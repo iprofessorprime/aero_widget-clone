@@ -40,8 +40,14 @@ module.exports = (_, argv) => ({
   module: {
     rules: [
       {
-        test: /\.(mp3)$/,
-        use: 'file-loader', 
+        test: /\.(mp3|wav|ogg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash].[ext]',
+            outputPath: 'src/pages/audioBase/musicPlayer/assets/audioFiles',
+          },
+        },
       },
       {
         test: /\.m?js/,
