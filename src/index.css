@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -11,4 +11,16 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+.iframe-page-wrapper {
+  background-color: white;
+  color: black;
+}
+.iframe-container {
+  padding: 30px;
+  border-radius: 5px;
+}
+.iframe-container iframe {
+  width: 100%;
+  border: none;
 }

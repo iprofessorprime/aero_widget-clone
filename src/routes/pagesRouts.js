@@ -2,6 +2,7 @@ import MinimalLayout from '../layouts/minimalLayout';
 import WelcomePage from '../pages/welcome';
 import Layout from '../layouts';
 import Portfolio from '../pages/portfolio';
+import IframePage from '../pages/iFrame';
 
 const PagesRoutes = {
   path: '/',
@@ -18,6 +19,10 @@ const PagesRoutes = {
     {
       path: 'portfolio',
       element: <Portfolio />
+    },
+    {
+      path: 'iframe',
+      element: <IframePage />
     },
   ]
 };
